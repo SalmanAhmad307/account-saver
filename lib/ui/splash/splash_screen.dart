@@ -1,9 +1,57 @@
+import 'package:account_saver/core/constants/media_query.dart';
+import 'package:account_saver/ui/navi%20bar/home/home_screen.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-class SplashScreen extends StatelessWidget {
+import 'dart:async';
+class SplashScreen extends StatefulWidget {
   const SplashScreen({super.key});
 
   @override
+  State<SplashScreen> createState() => _SplashScreenState();
+}
+
+class _SplashScreenState extends State<SplashScreen> {
+
+  AnimationController? _controller;
+  @override
+  void initState() {
+    super.initState();
+    Timer(const Duration(seconds: 5), () {
+      Navigator.pushReplacement(context, MaterialPageRoute(builder: (ctx) {
+        return const HomeScreen();
+      }));
+    });
+  }
+
+  // @override
+  // void dispose() {
+  //   _controller!.dispose();
+  //   super.dispose();
+  // }
+
+  @override
   Widget build(BuildContext context) {
-    return const Placeholder();
+    MySize().init(context);
+    return Scaffold(
+      backgroundColor: Colors.blueGrey,
+      body: Column(
+        crossAxisAlignment: CrossAxisAlignment.center,
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+           Icon(Icons.file_copy_outlined,color: Colors.white, size: MySize.size60,),
+          SizedBox(height: MySize.size20,),
+          Align(
+            alignment: Alignment.center,
+            child: Text('Welcome to \n Account Saver',style: TextStyle(
+              color: Colors.white,
+              fontWeight: FontWeight.bold,
+              fontSize: MySize.size40,
+            ),
+            ),
+          ),
+
+        ],
+      ),
+    );
   }
 }
