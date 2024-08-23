@@ -1,4 +1,3 @@
-
 import 'package:account_saver/database/database_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -73,12 +72,12 @@ class _AddBankAccountState extends State<AddBankAccount> {
   Widget build(BuildContext context) {
     return Container(
       padding: const EdgeInsets.all(16.0),
-      decoration: const BoxDecoration(
-        borderRadius: BorderRadius.only(
+      decoration: BoxDecoration(
+        borderRadius: const BorderRadius.only(
           topLeft: Radius.circular(20),
           topRight: Radius.circular(20),
         ),
-        color: Colors.blueGrey,
+        color: Colors.blueGrey[900],
       ),
       child: SingleChildScrollView(
         child: Form(

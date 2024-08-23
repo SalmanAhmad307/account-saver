@@ -1,8 +1,7 @@
-import 'package:account_saver/ui/widgets/fav_bank_account_tile.dart';
+import 'package:account_saver/ui/widgets/bank_account_tile.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import '../../database/database_provider.dart';
-
 
 class FavoriteScreen extends StatefulWidget {
   const FavoriteScreen({super.key});
@@ -29,8 +28,9 @@ class _FavoriteScreenState extends State<FavoriteScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.white,
       appBar: AppBar(
-        title:  const Text('Favorites'),
+        title: const Text('Favorites'),
       ),
       body: Consumer<DatabaseProvider>(
         builder: (context, provider, child) {
@@ -48,15 +48,12 @@ class _FavoriteScreenState extends State<FavoriteScreen> {
                   itemCount: provider.favoriteAccounts.length,
                   itemBuilder: (context, index) {
                     final account = provider.favoriteAccounts[index];
-                    return FavBankAccountTile(
+                    return BankAccountTile(
                       accountNumber: account['account_number'],
                       category: account['category'],
                       iban: account['iban'],
                       relation: account['relation'],
                       phoneNumber: account['phone_number'],
-                      onShare: () {
-                        // Implement share functionality here
-                      },
                       onDelete: () async {
                         final provider = Provider.of<DatabaseProvider>(context,
                             listen: false);

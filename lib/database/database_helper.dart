@@ -76,4 +76,13 @@ Future<List<Map<String, dynamic>>> queryFavoriteAccounts() async {
       whereArgs: [id],
     );
   }
+  Future<void> updateBankAccount(int id, Map<String, dynamic> account) async {
+    final db = await database;
+    await db.update(
+      'bank_accounts',
+      account,
+      where: 'id = ?',
+      whereArgs: [id],
+    );
+  }
 }

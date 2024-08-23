@@ -31,6 +31,7 @@ class _HomeScreen2State extends State<HomeScreen2> {
   Widget build(BuildContext context) {
     return Scaffold(
       resizeToAvoidBottomInset: true,
+      backgroundColor: Colors.white,
       body: Consumer<DatabaseProvider>(
         builder: (context, provider, child) {
           List<Map<String, dynamic>> filteredAccounts = _selectedCategory ==
@@ -78,9 +79,9 @@ class _HomeScreen2State extends State<HomeScreen2> {
                             iban: account['iban'],
                             relation: account['relation'],
                             phoneNumber: account['phone_number'],
-                            onShare: () {
-                              // Implement share functionality here
-                            },
+                            // onShare: () {
+                            //   // Implement share functionality here
+                            // },
                             onDelete: () async {
                               final provider = Provider.of<DatabaseProvider>(
                                   context,
