@@ -1,4 +1,5 @@
 // route_generator.dart
+import 'package:account_saver/ui/blog/blog_headline_screen.dart';
 import 'package:account_saver/ui/favorite_screen/favorite_screen.dart';
 import 'package:account_saver/ui/navi%20bar/home/home_screen.dart';
 import 'package:account_saver/ui/search_screen.dart/search_screen.dart';
@@ -11,7 +12,7 @@ class RouteGenerator {
       case Routes.home:
         return MaterialPageRoute(builder: (_) => const HomeScreen());
       case Routes.profile:
-        return MaterialPageRoute(builder: (_) => const ProfileScreen());
+        return MaterialPageRoute(builder: (_) => const BlogScreen());
       case Routes.settings:
         return MaterialPageRoute(builder: (_) => const SettingsScreen());
       case Routes.favorites:

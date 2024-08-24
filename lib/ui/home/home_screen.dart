@@ -1,3 +1,4 @@
+import 'package:account_saver/ui/widgets/custom_appbar.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import '../../database/database_provider.dart';
@@ -31,6 +32,7 @@ class _HomeScreen2State extends State<HomeScreen2> {
   Widget build(BuildContext context) {
     return Scaffold(
       resizeToAvoidBottomInset: true,
+            appBar: const CustomAppBar(title: "Home") ,
       backgroundColor: Colors.white,
       body: Consumer<DatabaseProvider>(
         builder: (context, provider, child) {

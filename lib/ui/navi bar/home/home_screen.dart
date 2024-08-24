@@ -1,5 +1,6 @@
 import 'package:account_saver/core/constants/app_colors.dart';
 import 'package:account_saver/core/constants/media_query.dart';
+import 'package:account_saver/ui/blog/main_news_screen.dart';
 import 'package:account_saver/ui/home/home_screen.dart';
 import 'package:account_saver/ui/widgets/custom_appbar.dart';
 import 'package:flutter/material.dart';
@@ -16,7 +17,8 @@ class _HomeScreenState extends State<HomeScreen> {
 
   final List<Widget> _screens = [
     const HomeScreen2(),
-    const ProfileScreen(),
+    //const BlogScreen(),
+    const MainNewsScreen(),
     const SettingsScreen(),
   ];
 
@@ -32,7 +34,7 @@ class _HomeScreenState extends State<HomeScreen> {
       resizeToAvoidBottomInset:
           true, // Adjust the view when keyboard is visible
 
-      appBar: const CustomAppBar(),
+      // appBar: const CustomAppBar(),
       backgroundColor: Colors.white,
       // floatingActionButton: FloatingActionButton(
       //   backgroundColor: Colors.white,
@@ -102,10 +104,13 @@ class SettingsScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     MySize().init(context);
 
-    return Center(
-      child: Text(
-        'Settings Screen',
-        style: TextStyle(color: Colors.white, fontSize: MySize.size20),
+    return Scaffold(
+      appBar: const CustomAppBar(title: "Settings"),
+      body: Center(
+        child: Text(
+          'Settings Screen',
+          style: TextStyle(color: Colors.white, fontSize: MySize.size20),
+        ),
       ),
     );
   }
