@@ -65,14 +65,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "1.18.0"
-  cross_file:
-    dependency: transitive
+  convex_bottom_bar:
+    dependency: "direct main"
     description:
-      name: cross_file
-      sha256: "7caf6a750a0c04effbb52a676dce9a4a592e10ad35c34d6d2d0e4811160d5670"
+      name: convex_bottom_bar
+      sha256: ebf0f3deb1e8e99374d844fee7485d2980ec502dedfaad395c12118477933aef
       url: "https://pub.dev"
     source: hosted
-    version: "0.3.4+2"
+    version: "3.2.0"
   crypto:
     dependency: transitive
     description:
@@ -232,14 +232,6 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "1.15.0"
-  mime:
-    dependency: transitive
-    description:
-      name: mime
-      sha256: "2e123074287cc9fd6c09de8336dae606d1ddb88d9ac47358826db698c176a1f2"
-      url: "https://pub.dev"
-    source: hosted
-    version: "1.0.5"
   nested:
     dependency: transitive
     description:
@@ -344,22 +336,6 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "0.28.0"
-  share_plus:
-    dependency: "direct main"
-    description:
-      name: share_plus
-      sha256: "468c43f285207c84bcabf5737f33b914ceb8eb38398b91e5e3ad1698d1b72a52"
-      url: "https://pub.dev"
-    source: hosted
-    version: "10.0.2"
-  share_plus_platform_interface:
-    dependency: transitive
-    description:
-      name: share_plus_platform_interface
-      sha256: "6ababf341050edff57da8b6990f11f4e99eaba837865e2e6defe16d039619db5"
-      url: "https://pub.dev"
-    source: hosted
-    version: "5.0.0"
   sky_engine:
     dependency: transitive
     description: flutter
@@ -549,14 +525,6 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "1.0.0"
-  win32:
-    dependency: transitive
-    description:
-      name: win32
-      sha256: "68d1e89a91ed61ad9c370f9f8b6effed9ae5e0ede22a270bdfa6daf79fc2290a"
-      url: "https://pub.dev"
-    source: hosted
-    version: "5.5.4"
   xdg_directories:
     dependency: transitive
     description:
