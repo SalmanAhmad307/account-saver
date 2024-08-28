@@ -141,7 +141,6 @@ class InfoCard extends StatelessWidget {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    // Title with bold, bright color
                     Text(
                       article.title ?? "No Title",
                       maxLines: 1,
@@ -153,7 +152,6 @@ class InfoCard extends StatelessWidget {
                       ),
                     ),
                     const SizedBox(height: 8.0),
-                    // Description with softer contrast
                     Text(
                       article.description ?? "No Description",
                       maxLines: 3,
@@ -164,19 +162,17 @@ class InfoCard extends StatelessWidget {
                       ),
                     ),
                     const SizedBox(height: 12.0),
-                    // Source with muted text color
                     Text(
-                      'Source: ${article.source}',
+                      'Source: ${article.source?.name ?? "Unknown Source"}',
                       style: const TextStyle(
                         fontSize: 12.0,
                         color: Colors.white54,
                       ),
                     ),
-                    // Read More Link
+                    const SizedBox(height: 12.0),
                     if (article.url != null && article.url!.isNotEmpty)
                       GestureDetector(
                         onTap: () {
-                          // Open the article URL
                           _launchURL(article.url!);
                         },
                         child: const Text(
@@ -200,7 +196,6 @@ class InfoCard extends StatelessWidget {
 
   void _launchURL(String url) async {
     try {
-      // ignore: deprecated_member_use
       await launch(url);
     } catch (e) {
       // Handle the error if the URL can't be opened

@@ -1,4 +1,4 @@
-
+import 'package:account_saver/core/constants/media_query.dart';
 import 'package:account_saver/ui/navi%20bar/blog/blog_catogery_screen.dart';
 import 'package:account_saver/ui/navi%20bar/blog/blog_headline_screen.dart';
 import 'package:flutter/cupertino.dart';
@@ -16,8 +16,15 @@ class _MainNewsScreenState extends State<MainNewsScreen> {
     final width = MediaQuery.sizeOf(context).width * 1;
     return Column(
       children: [
-        SizedBox(width: width, height: 240, child: const BlogScreen()),
-        SizedBox(width: width, height: 560, child: const BlogCategoryScreen()),
+        SizedBox(
+            width: width,
+            height: 260,
+            //height: height * 0.30,
+            child: const BlogScreen()),
+        Expanded(
+            // width: width,
+            // height: height * 0.34,
+            child: const BlogCategoryScreen()),
       ],
     );
   }
