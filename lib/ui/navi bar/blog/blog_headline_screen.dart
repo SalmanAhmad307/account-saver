@@ -1,9 +1,10 @@
 
 import 'package:account_saver/core/constants/media_query.dart';
-import 'package:account_saver/ui/blog/Widget/news_headlines_widget.dart';
-import 'package:account_saver/ui/blog/controller/news_controller.dart';
-import 'package:account_saver/ui/blog/model/news_headline_model.dart';
+import 'package:account_saver/ui/navi%20bar/blog/Widget/news_headlines_widget.dart';
+import 'package:account_saver/ui/navi%20bar/blog/controller/news_controller.dart';
 import 'package:flutter/material.dart';
+
+import 'model/news_headline_model.dart';
 
 class BlogScreen extends StatefulWidget {
   const BlogScreen({super.key});
@@ -181,7 +182,7 @@ class _BlogScreenState extends State<BlogScreen> {
                           title: truncateTitle(article.title ?? 'No Title', 13),
                           author: article.author ?? 'Unknown Author',
                           //content: article.content ?? 'No Content Available',
-                          article: article,
+                          //article: article,
                           source: article.source?.name ?? "No Source Available",
                           publishedAt: article.publishedAt ?? 'UnKnown',
                         ),

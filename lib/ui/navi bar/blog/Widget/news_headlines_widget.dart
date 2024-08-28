@@ -1,5 +1,6 @@
-import 'package:account_saver/ui/blog/Widget/news_headline_detailscreen.dart';
-import 'package:account_saver/ui/blog/model/news_headline_model.dart';
+
+import 'package:account_saver/ui/navi%20bar/blog/Widget/news_headline_detailscreen.dart';
+import 'package:account_saver/ui/navi%20bar/blog/model/catogery_news_model.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 
@@ -9,7 +10,7 @@ class NewsCard extends StatelessWidget {
   final String author;
   final String source;
   final String publishedAt;
-  final Articles article;
+  final Articles? article;
 
   const NewsCard({
     super.key,
@@ -18,7 +19,7 @@ class NewsCard extends StatelessWidget {
     required this.author,
     required this.source,
     required this.publishedAt,
-    required this.article,
+     this.article,
   });
 
   @override
@@ -28,7 +29,7 @@ class NewsCard extends StatelessWidget {
         Navigator.push(
           context,
           MaterialPageRoute(
-            builder: (context) => NewsDetailsScreen(article: article),
+            builder: (context) => NewsDetailsScreen(article: article!),
           ),
         );
       },

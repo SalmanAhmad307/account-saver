@@ -1,6 +1,10 @@
-import 'package:account_saver/ui/blog/model/catogery_news_model.dart';
-import 'package:account_saver/ui/blog/model/news_headline_model.dart';
-import 'package:account_saver/ui/blog/repository/news_repository.dart'; // Assuming you have an API response handling file
+
+
+// Assuming you have an API response handling file
+
+import 'package:account_saver/ui/navi%20bar/blog/model/catogery_news_model.dart';
+import 'package:account_saver/ui/navi%20bar/blog/model/news_headline_model.dart';
+import 'package:account_saver/ui/navi%20bar/blog/repository/news_repository.dart';
 
 class NewsController {
   final NewsRepository _res =

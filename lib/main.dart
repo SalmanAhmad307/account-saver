@@ -1,73 +1,148 @@
-// import 'package:account_saver/ui/splash/splash_screen.dart';
-// import 'package:flutter/material.dart';
-
-// void main() {
-//   runApp(const MyApp());
-// }
-
-// class MyApp extends StatelessWidget {
-//   const MyApp({super.key});
-
-//   // This widget is the root of your application.
-//   @override
-//   Widget build(BuildContext context) {
-//     return MaterialApp(
-//       title: 'Flutter Demo',
-//       theme: ThemeData(
-//         // This is the theme of your application.
-//         //
-//         // TRY THIS: Try running your application with "flutter run". You'll see
-//         // the application has a purple toolbar. Then, without quitting the app,
-//         // try changing the seedColor in the colorScheme below to Colors.green
-//         // and then invoke "hot reload" (save your changes or press the "hot
-//         // reload" button in a Flutter-supported IDE, or press "r" if you used
-//         // the command line to start the app).
-//         //
-//         // Notice that the counter didn't reset back to zero; the application
-//         // state is not lost during the reload. To reset the state, use hot
-//         // restart instead.
-//         //
-//         // This works for code too, not just values: Most code changes can be
-//         // tested with just a hot reload.
-//         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
-//         useMaterial3: true,
-//       ),
-//       home: const SplashScreen(),
-//       debugShowCheckedModeBanner: false,
-//     );
-//   }
-// }
-
+import 'package:account_saver/core/constants/app_all_strings.dart';
 import 'package:account_saver/database/database_provider.dart';
 import 'package:account_saver/routes/route_generator.dart';
 import 'package:account_saver/routes/routes.dart';
+import 'package:account_saver/ui/splash/splash_screen.dart';
+import 'package:device_preview/device_preview.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_localization/flutter_localization.dart';
 import 'package:provider/provider.dart';
 
-void main() {
-  WidgetsFlutterBinding.ensureInitialized();
+final FlutterLocalization localization = FlutterLocalization.instance;
 
+void main() {
   runApp(
-    const MyApp(),
+      DevicePreview(
+        enabled: !kReleaseMode,
+        builder: (context) => MyApp(), // Wrap your app
+      ),
+     // const MyApp()
+
   );
 }
 
-class MyApp extends StatelessWidget {
+class MyApp extends StatefulWidget {
   const MyApp({super.key});
 
   @override
+  State<MyApp> createState() => _MyAppState();
+}
+
+class _MyAppState extends State<MyApp> {
+  // This widget is the root of your application.
+
+  void initState() {
+    super.initState();
+    localization.init(
+      mapLocales: [
+        const MapLocale('en', AppLocale.EN),
+        const MapLocale('ar', AppLocale.AR),
+        const MapLocale('de', AppLocale.DE),
+        const MapLocale('zh', AppLocale.ZH),
+        const MapLocale('es', AppLocale.ES),
+      ],
+      initLanguageCode:'en',
+    );
+    localization.onTranslatedLanguage = onTranslatedLanguage;
+
+
+
+  }
+
+  void onTranslatedLanguage(Locale? locale) {
+    setState(() {
+
+    });
+  }
+  @override
   Widget build(BuildContext context) {
+
     return MultiProvider(
       providers: [
         ChangeNotifierProvider<DatabaseProvider>(
           create: (_) => DatabaseProvider(),
         ),
       ],
-      child: const MaterialApp(
+      child:  MaterialApp(
+         supportedLocales: localization.supportedLocales,
+         localizationsDelegates: localization.localizationsDelegates,
         title: 'Accounter ++',
         initialRoute: Routes.home,
         onGenerateRoute: RouteGenerator.generateRoute,
+        debugShowCheckedModeBanner: false,
       ),
     );
   }
 }
+
+// import 'package:account_saver/database/database_provider.dart';
+// import 'package:account_saver/routes/route_generator.dart';
+// import 'package:account_saver/routes/routes.dart';
+// import 'package:flutter/material.dart';
+// import 'package:flutter_localization/flutter_localization.dart';
+// import 'package:provider/provider.dart';
+//
+// import 'core/constants/app_all_strings.dart';
+
+// final FlutterLocalization localization = FlutterLocalization.instance;
+// void main() {
+//   WidgetsFlutterBinding.ensureInitialized();
+//
+//   runApp(
+//     const MyApp(),
+//   );
+// }
+//
+// class MyApp extends StatefulWidget {
+//   const MyApp({super.key});
+//
+//   @override
+//   State<MyApp> createState() => _MyAppState();
+// }
+//
+// class _MyAppState extends State<MyApp> {
+//   @override
+//   void initState() {
+//     super.initState();
+//     localization.init(
+//       mapLocales: [
+//         const MapLocale('en', AppLocale.EN),
+//         const MapLocale('ar', AppLocale.AR),
+//         const MapLocale('de', AppLocale.DE),
+//         const MapLocale('zh', AppLocale.ZH),
+//         const MapLocale('es', AppLocale.ES),
+//       ],
+//       initLanguageCode:'en',
+//     );
+//     localization.onTranslatedLanguage = onTranslatedLanguage;
+//
+//
+//
+//   }
+//
+//   void onTranslatedLanguage(Locale? locale) {
+//     setState(() {
+//
+//     });
+//   }
+//
+//   @override
+//   Widget build(BuildContext context) {
+//     return MultiProvider(
+//       providers: [
+//         ChangeNotifierProvider<DatabaseProvider>(
+//           create: (_) => DatabaseProvider(),
+//         ),
+//       ],
+//       child:  MaterialApp(
+//          supportedLocales: localization.supportedLocales,
+//          localizationsDelegates: localization.localizationsDelegates,
+//         title: 'Accounter ++',
+//         initialRoute: Routes.home,
+//         onGenerateRoute: RouteGenerator.generateRoute,
+//         debugShowCheckedModeBanner: false,
+//       ),
+//     );
+//   }
+// }

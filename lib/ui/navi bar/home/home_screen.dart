@@ -1,206 +1,307 @@
-// import 'package:account_saver/core/constants/app_colors.dart';
-// import 'package:account_saver/core/constants/media_query.dart';
-// import 'package:account_saver/ui/blog/main_news_screen.dart';
-// import 'package:account_saver/ui/home/home_screen.dart';
 // import 'package:account_saver/ui/widgets/custom_appbar.dart';
 // import 'package:flutter/material.dart';
+// import 'package:provider/provider.dart';
+// import '../../database/database_provider.dart';
+// import '../widgets/add_bank_account.dart';
+// import '../widgets/bank_account_tile.dart';
 
-// class HomeScreen extends StatefulWidget {
-//   const HomeScreen({super.key});
+// class HomeScreen2 extends StatefulWidget {
+//   const HomeScreen2({super.key});
 
 //   @override
-//   State<HomeScreen> createState() => _HomeScreenState();
+//   // ignore: library_private_types_in_public_api
+//   _HomeScreen2State createState() => _HomeScreen2State();
 // }
 
-// class _HomeScreenState extends State<HomeScreen> {
-//   int _currentIndex = 0;
+// class _HomeScreen2State extends State<HomeScreen2> {
+//   late Future<void> _fetchData;
+//   String? _selectedCategory; // Track the selected category
 
-//   final List<Widget> _screens = [
-//     const HomeScreen2(),
-//     //const BlogScreen(),
-//     const MainNewsScreen(),
-//     const SettingsScreen(),
-//   ];
+//   @override
+//   void initState() {
+//     super.initState();
+//     _fetchData = _loadData();
+//   }
 
-//   void _onTabTapped(int index) {
-//     setState(() {
-//       _currentIndex = index;
-//     });
+//   Future<void> _loadData() async {
+//     final provider = Provider.of<DatabaseProvider>(context, listen: false);
+//     await provider.fetchBankAccounts();
 //   }
 
 //   @override
 //   Widget build(BuildContext context) {
 //     return Scaffold(
-//       resizeToAvoidBottomInset:
-//           true, // Adjust the view when keyboard is visible
-
-//       // appBar: const CustomAppBar(),
+//       resizeToAvoidBottomInset: true,
+//             appBar: const CustomAppBar(title: "Home") ,
 //       backgroundColor: Colors.white,
-//       // floatingActionButton: FloatingActionButton(
-//       //   backgroundColor: Colors.white,
-//       //   onPressed: () {
-//       //     showModalBottomSheet(
-//       //       context: context,
-//       //       builder: (BuildContext context) {
-//       //         return const AddBankAccount();
-//       //       },
-//       //     );
-//       //   },
-//       //   child: Icon(
-//       //     Icons.add,
-//       //     size: MySize.size30,
-//       //     color: Colors.blueGrey,
-//       //   ),
-//       // ),
-//       body: IndexedStack(
-//         index: _currentIndex,
-//         children: _screens,
+//       body: Consumer<DatabaseProvider>(
+//         builder: (context, provider, child) {
+//           List<Map<String, dynamic>> filteredAccounts = _selectedCategory ==
+//                   null
+//               ? provider.bankAccounts
+//               : provider.bankAccounts
+//                   .where((account) => account['category'] == _selectedCategory)
+//                   .toList();
+
+//           return FutureBuilder<void>(
+//             future: _fetchData,
+//             builder: (context, snapshot) {
+//               if (snapshot.connectionState == ConnectionState.waiting) {
+//                 return const Center(child: CircularProgressIndicator());
+//               } else if (snapshot.hasError) {
+//                 return Center(child: Text('Error: ${snapshot.error}'));
+//               } else if (provider.bankAccounts.isEmpty) {
+//                 return const Center(child: Text('No data available.'));
+//               } else {
+//                 return Column(
+//                   children: [
+//                     // Category Chips
+//                     SizedBox(
+//                       height: 60,
+//                       child: ListView(
+//                         scrollDirection: Axis.horizontal,
+//                         children: [
+//                           _buildCategoryChip(context, 'All'),
+//                           _buildCategoryChip(context, 'Personal'),
+//                           _buildCategoryChip(context, 'Family'),
+//                           _buildCategoryChip(context, 'Business'),
+//                           _buildCategoryChip(context, 'Friends'),
+//                           _buildCategoryChip(context, 'Other'),
+//                         ],
+//                       ),
+//                     ),
+//                     Expanded(
+//                       child: ListView.builder(
+//                         itemCount: filteredAccounts.length,
+//                         itemBuilder: (context, index) {
+//                           final account = filteredAccounts[index];
+//                           return BankAccountTile(
+//                             accountNumber: account['account_number'],
+//                             category: account['category'],
+//                             iban: account['iban'],
+//                             relation: account['relation'],
+//                             phoneNumber: account['phone_number'],
+//                             // onShare: () {
+//                             //   // Implement share functionality here
+//                             // },
+//                             onDelete: () async {
+//                               final provider = Provider.of<DatabaseProvider>(
+//                                   context,
+//                                   listen: false);
+//                               await provider.deleteBankAccount(
+//                                   account['id']); // Pass the ID to delete
+//                             },
+//                             accountHolderName:
+//                                 account["account_holder_name"] ?? "n/a",
+//                             bankName: account["bank_name"] ?? "n/a",
+//                             account: account,
+//                           );
+//                         },
+//                       ),
+//                     ),
+//                   ],
+//                 );
+//               }
+//             },
+//           );
+//         },
 //       ),
-//       bottomNavigationBar: BottomNavigationBar(
-//         currentIndex: _currentIndex,
-//         selectedItemColor: Colors.white,
-//         unselectedItemColor: Colors.white30,
-//         backgroundColor: AppColors.borderColorDark,
-//         onTap: _onTabTapped,
-//         items: const [
-//           BottomNavigationBarItem(
-//             icon: Icon(Icons.home),
-//             label: 'Home',
-//           ),
-//           BottomNavigationBarItem(
-//             icon: Icon(Icons.insert_drive_file_outlined),
-//             label: 'Blogs',
-//           ),
-//           BottomNavigationBarItem(
-//             icon: Icon(Icons.settings),
-//             label: 'Settings',
-//           ),
-//         ],
+
+//       floatingActionButton: FloatingActionButton(
+//         onPressed: () {
+//           showModalBottomSheet(
+//             context: context,
+//             builder: (context) => const AddBankAccount(),
+//           );
+//         },
+//         child: const Icon(Icons.add),
 //       ),
 //     );
 //   }
-// }
 
-// class ProfileScreen extends StatelessWidget {
-//   const ProfileScreen({super.key});
+//   Widget _buildCategoryChip(BuildContext context, String category) {
+//     bool isSelected = _selectedCategory == category ||
+//         (category == 'All' && _selectedCategory == null);
 
-//   @override
-//   Widget build(BuildContext context) {
-//     MySize().init(context);
-
-//     return Center(
-//       child: Text(
-//         'Profile Screen',
-//         style: TextStyle(color: Colors.white, fontSize: MySize.size20),
-//       ),
-//     );
-//   }
-// }
-
-// class SettingsScreen extends StatelessWidget {
-//   const SettingsScreen({super.key});
-
-//   @override
-//   Widget build(BuildContext context) {
-//     MySize().init(context);
-
-//     return Scaffold(
-//       appBar: const CustomAppBar(title: "Settings"),
-//       body: Center(
-//         child: Text(
-//           'Settings Screen',
-//           style: TextStyle(color: Colors.white, fontSize: MySize.size20),
+//     return Padding(
+//       padding: const EdgeInsets.symmetric(horizontal: 8.0),
+//       child: FilterChip(
+//         label: Text(
+//           category,
+//           style: TextStyle(
+//             color: isSelected ? Colors.white : Colors.black,
+//           ),
 //         ),
+//         selected: isSelected,
+//         onSelected: (selected) {
+//           setState(() {
+//             _selectedCategory = selected
+//                 ? (category == 'All' ? null : category)
+//                 : _selectedCategory;
+//           });
+//         },
+//         selectedColor: Colors.black,
+//         backgroundColor: Colors.grey[200],
+//         padding: const EdgeInsets.symmetric(horizontal: 12.0, vertical: 8.0),
+//         showCheckmark: false,
 //       ),
 //     );
 //   }
 // }
+
 import 'package:account_saver/core/constants/app_colors.dart';
-import 'package:account_saver/core/constants/media_query.dart';
-import 'package:account_saver/ui/blog/main_news_screen.dart';
-import 'package:account_saver/ui/home/home_screen.dart';
 import 'package:account_saver/ui/widgets/custom_appbar.dart';
-import 'package:convex_bottom_bar/convex_bottom_bar.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import '../../../database/database_provider.dart';
+import '../../widgets/add_bank_account.dart';
+import '../../widgets/bank_account_tile.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
 
   @override
-  State<HomeScreen> createState() => _HomeScreenState();
+  _HomeScreenState createState() => _HomeScreenState();
 }
 
 class _HomeScreenState extends State<HomeScreen> {
-  int _currentIndex = 0;
+  late Future<void> _fetchData;
+  String? _selectedCategory; // Track the selected category
 
-  final List<Widget> _screens = [
-    const HomeScreen2(),
-    const MainNewsScreen(),
-    const SettingsScreen(),
-  ];
+  @override
+  void initState() {
+    super.initState();
+    _fetchData = _loadData();
+  }
 
-  void _onTabTapped(int index) {
-    setState(() {
-      _currentIndex = index;
-    });
+  Future<void> _loadData() async {
+    final provider = Provider.of<DatabaseProvider>(context, listen: false);
+    await provider.fetchBankAccounts();
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       resizeToAvoidBottomInset: true,
+      appBar: const CustomAppBar(title: "Home"),
+      backgroundColor: Colors.white,
       body: Stack(
         children: [
-          IndexedStack(
-            index: _currentIndex,
-            children: _screens,
+          Consumer<DatabaseProvider>(
+            builder: (context, provider, child) {
+              List<Map<String, dynamic>> filteredAccounts = _selectedCategory ==
+                      null
+                  ? provider.bankAccounts
+                  : provider.bankAccounts
+                      .where(
+                          (account) => account['category'] == _selectedCategory)
+                      .toList();
+
+              return FutureBuilder<void>(
+                future: _fetchData,
+                builder: (context, snapshot) {
+                  if (snapshot.connectionState == ConnectionState.waiting) {
+                    return const Center(child: CircularProgressIndicator());
+                  } else if (snapshot.hasError) {
+                    return Center(child: Text('Error: ${snapshot.error}'));
+                  } else if (provider.bankAccounts.isEmpty) {
+                    return const Center(child: Text('No data available.'));
+                  } else {
+                    return Column(
+                      children: [
+                        // Category Chips
+                        SizedBox(
+                          height: 60,
+                          child: ListView(
+                            scrollDirection: Axis.horizontal,
+                            children: [
+                              _buildCategoryChip(context, 'All'),
+                              _buildCategoryChip(context, 'Personal'),
+                              _buildCategoryChip(context, 'Family'),
+                              _buildCategoryChip(context, 'Business'),
+                              _buildCategoryChip(context, 'Friends'),
+                              _buildCategoryChip(context, 'Other'),
+                            ],
+                          ),
+                        ),
+                        Expanded(
+                          child: ListView.builder(
+                            itemCount: filteredAccounts.length,
+                            itemBuilder: (context, index) {
+                              final account = filteredAccounts[index];
+                              return BankAccountTile(
+                                accountNumber: account['account_number'],
+                                category: account['category'],
+                                iban: account['iban'],
+                                relation: account['relation'],
+                                phoneNumber: account['phone_number'],
+                                onDelete: () async {
+                                  final provider =
+                                      Provider.of<DatabaseProvider>(context,
+                                          listen: false);
+                                  await provider.deleteBankAccount(
+                                      account['id']); // Pass the ID to delete
+                                },
+                                accountHolderName:
+                                    account["account_holder_name"] ?? "n/a",
+                                bankName: account["bank_name"] ?? "n/a",
+                                account: account,
+                              );
+                            },
+                          ),
+                        ),
+                      ],
+                    );
+                  }
+                },
+              );
+            },
           ),
           Positioned(
-            left: 20,
-            right: 20,
-            bottom:
-                20, // Adjust this value to control how high the app bar floats
-            child: ClipRRect(
-              borderRadius: BorderRadius.circular(
-                  25.0), // Rounded corners for floating effect
-              child: ConvexAppBar(
-                backgroundColor: AppColors.borderColorDark,
-                height: 70, // Height of the floating app bar
-                style: TabStyle.reactCircle, // Animation style
-                elevation: 10, // Elevation for a shadow effect
-                curveSize: 70, // Decreased curve size for smaller highlight
-                top: -4, // Adjust top to fine-tune the highlight position
-                items: const [
-                  TabItem(icon: Icons.home, title: 'Home'),
-                  TabItem(
-                      icon: Icons.insert_drive_file_outlined, title: 'Blogs'),
-                  TabItem(icon: Icons.settings, title: 'Settings'),
-                ],
-                initialActiveIndex: _currentIndex,
-                onTap: _onTabTapped,
-              ),
+            bottom: 50, // Adjust the value to move the FAB upward
+            right: 30,
+            child: FloatingActionButton(
+              backgroundColor: AppColors.borderColorDark,
+              foregroundColor: Colors.white,
+              onPressed: () {
+                showModalBottomSheet(
+                  context: context,
+                  builder: (context) => const AddBankAccount(),
+                );
+              },
+              child: const Icon(Icons.add),
             ),
           ),
         ],
       ),
     );
   }
-}
 
-class SettingsScreen extends StatelessWidget {
-  const SettingsScreen({super.key});
+  Widget _buildCategoryChip(BuildContext context, String category) {
+    bool isSelected = _selectedCategory == category ||
+        (category == 'All' && _selectedCategory == null);
 
-  @override
-  Widget build(BuildContext context) {
-    MySize().init(context);
-
-    return Scaffold(
-      appBar: const CustomAppBar(title: "Settings"),
-      body: Center(
-        child: Text(
-          'Settings Screen',
-          style: TextStyle(color: Colors.white, fontSize: MySize.size20),
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 8.0),
+      child: FilterChip(
+        label: Text(
+          category,
+          style: TextStyle(
+            color: isSelected ? Colors.white : Colors.black,
+          ),
         ),
+        selected: isSelected,
+        onSelected: (selected) {
+          setState(() {
+            _selectedCategory = selected
+                ? (category == 'All' ? null : category)
+                : _selectedCategory;
+          });
+        },
+        selectedColor: Colors.black,
+        backgroundColor: Colors.grey[200],
+        padding: const EdgeInsets.symmetric(horizontal: 12.0, vertical: 8.0),
+        showCheckmark: false,
       ),
     );
   }

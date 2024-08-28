@@ -1,5 +1,6 @@
-import 'package:account_saver/ui/blog/blog_catogery_screen.dart';
-import 'package:account_saver/ui/blog/blog_headline_screen.dart';
+
+import 'package:account_saver/ui/navi%20bar/blog/blog_catogery_screen.dart';
+import 'package:account_saver/ui/navi%20bar/blog/blog_headline_screen.dart';
 import 'package:flutter/cupertino.dart';
 
 class MainNewsScreen extends StatefulWidget {

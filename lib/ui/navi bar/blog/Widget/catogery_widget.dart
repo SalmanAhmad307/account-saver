@@ -79,10 +79,11 @@
 //   }
 // }
 
-import 'package:account_saver/ui/blog/Widget/catogery_detail_screen.dart';
+import 'package:account_saver/ui/navi%20bar/blog/Widget/catogery_detail_screen.dart';
+import 'package:account_saver/ui/navi%20bar/blog/model/catogery_news_model.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
-import 'package:account_saver/ui/blog/model/catogery_news_model.dart';
+
 import 'package:url_launcher/url_launcher.dart';
 
 class InfoCard extends StatelessWidget {

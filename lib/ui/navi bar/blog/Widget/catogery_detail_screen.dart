@@ -100,10 +100,13 @@
 //     }
 //   }
 // }
+import 'package:account_saver/ui/navi%20bar/blog/model/catogery_news_model.dart';
 import 'package:flutter/material.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:url_launcher/url_launcher.dart';
-import 'package:account_saver/ui/blog/model/catogery_news_model.dart'; // Adjust as needed
+
+
+ // Adjust as needed
 
 class ArticleDetailScreen extends StatelessWidget {
   final Articles article;

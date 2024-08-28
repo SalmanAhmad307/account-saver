@@ -19,9 +19,10 @@
 // }
 
 import 'dart:convert';
-import 'package:account_saver/ui/blog/model/catogery_news_model.dart';
+import 'package:account_saver/ui/navi%20bar/blog/model/catogery_news_model.dart';
+import 'package:account_saver/ui/navi%20bar/blog/model/news_headline_model.dart';
 import 'package:http/http.dart' as http;
-import 'package:account_saver/ui/blog/model/news_headline_model.dart';
+
 
 class NewsRepository {
   final String apiKey = 'your_api_key_here'; // Replace with your actual API key

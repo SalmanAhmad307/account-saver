@@ -1,5 +1,5 @@
 import 'package:account_saver/core/constants/media_query.dart';
-import 'package:account_saver/ui/navi%20bar/home/home_screen.dart';
+import 'package:account_saver/ui/navi%20bar/navigation_screen.dart';
 import 'package:flutter/material.dart';
 import 'dart:async';
 class SplashScreen extends StatefulWidget {
@@ -16,7 +16,7 @@ class _SplashScreenState extends State<SplashScreen> {
     super.initState();
     Timer(const Duration(seconds: 5), () {
       Navigator.pushReplacement(context, MaterialPageRoute(builder: (ctx) {
-        return const HomeScreen();
+        return const NavigationScreen();
       }));
     });
   }

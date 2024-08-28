@@ -70,9 +70,9 @@
 //   }
 // }
 
+import 'package:account_saver/ui/navi%20bar/blog/model/catogery_news_model.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
-import 'package:account_saver/ui/blog/model/news_headline_model.dart';
 
 class NewsDetailsScreen extends StatelessWidget {
   final Articles article;

@@ -128,10 +128,11 @@
 //   }
 // }
 
-import 'package:account_saver/ui/blog/Widget/catogery_widget.dart';
-import 'package:account_saver/ui/blog/model/catogery_news_model.dart';
+import 'package:account_saver/ui/navi%20bar/blog/Widget/catogery_widget.dart';
+import 'package:account_saver/ui/navi%20bar/blog/controller/news_controller.dart';
+import 'package:account_saver/ui/navi%20bar/blog/model/catogery_news_model.dart';
 import 'package:flutter/material.dart';
-import 'package:account_saver/ui/blog/controller/news_controller.dart';
+
 
 class BlogCategoryScreen extends StatefulWidget {
   const BlogCategoryScreen({super.key});
