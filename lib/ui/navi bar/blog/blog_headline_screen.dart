@@ -1,4 +1,3 @@
-
 import 'package:account_saver/core/constants/media_query.dart';
 import 'package:account_saver/ui/navi%20bar/blog/Widget/news_headlines_widget.dart';
 import 'package:account_saver/ui/navi%20bar/blog/controller/news_controller.dart';
@@ -42,6 +41,7 @@ class _BlogScreenState extends State<BlogScreen> {
   Widget build(BuildContext context) {
     MySize().init(context);
     final width = MediaQuery.sizeOf(context).width * 1;
+    final height = MediaQuery.sizeOf(context).height;
 
     return Scaffold(
       appBar: AppBar(
@@ -131,6 +131,7 @@ class _BlogScreenState extends State<BlogScreen> {
         children: [
           SizedBox(
             width: width,
+//            height: height * 0.22,
             height: 150,
             child: FutureBuilder<NewsChannelHeadlineModel>(
               future: _newsFuture,
@@ -182,7 +183,7 @@ class _BlogScreenState extends State<BlogScreen> {
                           title: truncateTitle(article.title ?? 'No Title', 13),
                           author: article.author ?? 'Unknown Author',
                           //content: article.content ?? 'No Content Available',
-                          //article: article,
+                          article: article,
                           source: article.source?.name ?? "No Source Available",
                           publishedAt: article.publishedAt ?? 'UnKnown',
                         ),
