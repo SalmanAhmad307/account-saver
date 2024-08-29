@@ -1,4 +1,6 @@
+import 'package:account_saver/core/constants/app_all_strings.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_localization/flutter_localization.dart';
 import 'package:provider/provider.dart';
 import 'package:account_saver/database/database_provider.dart';
 import 'package:account_saver/ui/widgets/bank_account_tile.dart';
@@ -37,8 +39,8 @@ class SearchScreen extends StatelessWidget {
                             onChanged: (query) {
                               provider.searchAccounts(query);
                             },
-                            decoration: const InputDecoration(
-                              labelText: 'Search',
+                            decoration:  InputDecoration(
+                              labelText: AppLocale.search.getString(context),
                               border: InputBorder.none,
                               prefixIcon:
                                   Icon(Icons.search, color: Colors.blueGrey),

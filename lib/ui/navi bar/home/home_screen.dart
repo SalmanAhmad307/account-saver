@@ -149,6 +149,7 @@
 //   }
 // }
 
+import 'package:account_saver/core/constants/app_all_strings.dart';
 import 'package:account_saver/core/constants/app_colors.dart';
 import 'package:account_saver/ui/widgets/custom_appbar.dart';
 import 'package:flutter/material.dart';
@@ -156,6 +157,7 @@ import 'package:provider/provider.dart';
 import '../../../database/database_provider.dart';
 import '../../widgets/add_bank_account.dart';
 import '../../widgets/bank_account_tile.dart';
+import 'package:flutter_localization/flutter_localization.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -183,7 +185,7 @@ class _HomeScreenState extends State<HomeScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       resizeToAvoidBottomInset: true,
-      appBar: const CustomAppBar(title: "Home"),
+      appBar:  CustomAppBar(title: AppLocale.home.getString(context)),
       backgroundColor: Colors.white,
       body: Stack(
         children: [
@@ -205,7 +207,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   } else if (snapshot.hasError) {
                     return Center(child: Text('Error: ${snapshot.error}'));
                   } else if (provider.bankAccounts.isEmpty) {
-                    return const Center(child: Text('No data available.'));
+                    return  Center(child: Text(AppLocale.noDataAvailable.getString(context)));
                   } else {
                     return Column(
                       children: [
@@ -215,12 +217,12 @@ class _HomeScreenState extends State<HomeScreen> {
                           child: ListView(
                             scrollDirection: Axis.horizontal,
                             children: [
-                              _buildCategoryChip(context, 'All'),
-                              _buildCategoryChip(context, 'Personal'),
-                              _buildCategoryChip(context, 'Family'),
-                              _buildCategoryChip(context, 'Business'),
-                              _buildCategoryChip(context, 'Friends'),
-                              _buildCategoryChip(context, 'Other'),
+                              _buildCategoryChip(context, AppLocale.all.getString(context)),
+                              _buildCategoryChip(context, AppLocale.personal.getString(context)),
+                              _buildCategoryChip(context, AppLocale.family.getString(context)),
+                              _buildCategoryChip(context, AppLocale.business.getString(context)),
+                              _buildCategoryChip(context, AppLocale.friends.getString(context)),
+                              _buildCategoryChip(context, AppLocale.other.getString(context)),
                             ],
                           ),
                         ),

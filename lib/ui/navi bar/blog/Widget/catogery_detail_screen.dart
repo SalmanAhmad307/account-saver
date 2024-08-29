@@ -105,8 +105,7 @@ import 'package:flutter/material.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:url_launcher/url_launcher.dart';
 
-
- // Adjust as needed
+// Adjust as needed
 
 class ArticleDetailScreen extends StatelessWidget {
   final Articles article;
@@ -172,28 +171,25 @@ class ArticleDetailScreen extends StatelessWidget {
               ),
             ),
             const SizedBox(height: 24.0),
-            // Title with Gen Z inspired font style
             Text(
               article.title ?? "No Title",
               style: const TextStyle(
                 fontSize: 28.0,
                 fontWeight: FontWeight.bold,
-                fontFamily: 'Poppins', // Use a modern font like 'Poppins'
+                fontFamily: 'Poppins',
                 color: Colors.black,
               ),
             ),
             const SizedBox(height: 12.0),
-            // Description with playful font style
             Text(
               article.description ?? "",
               style: TextStyle(
                 fontSize: 18.0,
-                fontFamily: 'Roboto', // Use 'Roboto' for a clean, modern look
+                fontFamily: 'Roboto',
                 color: Colors.grey[800],
               ),
             ),
             const SizedBox(height: 20.0),
-            // Source with muted color
             Text(
               'Source: ${article.source}',
               style: const TextStyle(
@@ -203,7 +199,6 @@ class ArticleDetailScreen extends StatelessWidget {
               ),
             ),
             const SizedBox(height: 20.0),
-            // Read More Link with bright color and underline
             if (article.url != null && article.url!.isNotEmpty)
               GestureDetector(
                 onTap: () {

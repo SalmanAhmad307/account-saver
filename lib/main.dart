@@ -2,7 +2,6 @@ import 'package:account_saver/core/constants/app_all_strings.dart';
 import 'package:account_saver/database/database_provider.dart';
 import 'package:account_saver/routes/route_generator.dart';
 import 'package:account_saver/routes/routes.dart';
-import 'package:account_saver/ui/splash/splash_screen.dart';
 import 'package:device_preview/device_preview.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
@@ -15,7 +14,7 @@ void main() {
   runApp(
       DevicePreview(
         enabled: !kReleaseMode,
-        builder: (context) => MyApp(), // Wrap your app
+        builder: (context) => const MyApp(), // Wrap your app
       ),
      // const MyApp()
 
@@ -75,74 +74,3 @@ class _MyAppState extends State<MyApp> {
     );
   }
 }
-
-// import 'package:account_saver/database/database_provider.dart';
-// import 'package:account_saver/routes/route_generator.dart';
-// import 'package:account_saver/routes/routes.dart';
-// import 'package:flutter/material.dart';
-// import 'package:flutter_localization/flutter_localization.dart';
-// import 'package:provider/provider.dart';
-//
-// import 'core/constants/app_all_strings.dart';
-
-// final FlutterLocalization localization = FlutterLocalization.instance;
-// void main() {
-//   WidgetsFlutterBinding.ensureInitialized();
-//
-//   runApp(
-//     const MyApp(),
-//   );
-// }
-//
-// class MyApp extends StatefulWidget {
-//   const MyApp({super.key});
-//
-//   @override
-//   State<MyApp> createState() => _MyAppState();
-// }
-//
-// class _MyAppState extends State<MyApp> {
-//   @override
-//   void initState() {
-//     super.initState();
-//     localization.init(
-//       mapLocales: [
-//         const MapLocale('en', AppLocale.EN),
-//         const MapLocale('ar', AppLocale.AR),
-//         const MapLocale('de', AppLocale.DE),
-//         const MapLocale('zh', AppLocale.ZH),
-//         const MapLocale('es', AppLocale.ES),
-//       ],
-//       initLanguageCode:'en',
-//     );
-//     localization.onTranslatedLanguage = onTranslatedLanguage;
-//
-//
-//
-//   }
-//
-//   void onTranslatedLanguage(Locale? locale) {
-//     setState(() {
-//
-//     });
-//   }
-//
-//   @override
-//   Widget build(BuildContext context) {
-//     return MultiProvider(
-//       providers: [
-//         ChangeNotifierProvider<DatabaseProvider>(
-//           create: (_) => DatabaseProvider(),
-//         ),
-//       ],
-//       child:  MaterialApp(
-//          supportedLocales: localization.supportedLocales,
-//          localizationsDelegates: localization.localizationsDelegates,
-//         title: 'Accounter ++',
-//         initialRoute: Routes.home,
-//         onGenerateRoute: RouteGenerator.generateRoute,
-//         debugShowCheckedModeBanner: false,
-//       ),
-//     );
-//   }
-// }

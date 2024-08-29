@@ -1,5 +1,8 @@
+import 'package:account_saver/core/constants/app_all_strings.dart';
+import 'package:account_saver/main.dart';
 import 'package:account_saver/ui/widgets/bank_account_tile.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_localization/flutter_localization.dart';
 import 'package:provider/provider.dart';
 import '../../database/database_provider.dart';
 
@@ -30,7 +33,7 @@ class _FavoriteScreenState extends State<FavoriteScreen> {
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
-        title: const Text('Favorites'),
+        title:  Text(AppLocale.favourite.getString(context)),
       ),
       body: Consumer<DatabaseProvider>(
         builder: (context, provider, child) {
@@ -42,7 +45,7 @@ class _FavoriteScreenState extends State<FavoriteScreen> {
               } else if (snapshot.hasError) {
                 return Center(child: Text('Error: ${snapshot.error}'));
               } else if (provider.favoriteAccounts.isEmpty) {
-                return const Center(child: Text('No favorite accounts.'));
+                return  Center(child: Text(AppLocale.noFavouriteAccounts.getString(context)));
               } else {
                 return ListView.builder(
                   itemCount: provider.favoriteAccounts.length,

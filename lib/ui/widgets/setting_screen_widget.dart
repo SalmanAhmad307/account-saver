@@ -4,13 +4,13 @@ import 'package:flutter/material.dart';
 class SettingScreenWidget extends StatelessWidget {
   final String text;
   final IconData beforeIcon;
-  final VoidCallback onPressed;
+  final VoidCallback? onPressed;
   const SettingScreenWidget(
       {
         super.key,
       required this.text,
       required this.beforeIcon,
-      required this.onPressed
+       this.onPressed
       });
 
   @override

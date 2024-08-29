@@ -1,10 +1,13 @@
+import 'package:account_saver/core/constants/app_all_strings.dart';
 import 'package:account_saver/core/constants/app_colors.dart';
 import 'package:account_saver/core/constants/media_query.dart';
+import 'package:account_saver/main.dart';
 
 import 'package:account_saver/ui/navi%20bar/home/home_screen.dart';
 import 'package:account_saver/ui/navi%20bar/blog/main_news_screen.dart';
 import 'package:account_saver/ui/navi%20bar/setting_screen/setting_screen.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_localization/flutter_localization.dart';
 import 'package:google_nav_bar/google_nav_bar.dart';
 
 class NavigationScreen extends StatefulWidget {
@@ -19,7 +22,6 @@ class _NavigationScreenState extends State<NavigationScreen> {
 
   final List<Widget> _screens = [
     const HomeScreen(),
-    //const BlogScreen(),
     const MainNewsScreen(),
     const SettingScreen(),
   ];
@@ -32,6 +34,7 @@ class _NavigationScreenState extends State<NavigationScreen> {
 
   @override
   Widget build(BuildContext context) {
+    MySize().init(context);
     return Scaffold(
       resizeToAvoidBottomInset:
           true, // Adjust the view when keyboard is visible
@@ -94,18 +97,18 @@ class _NavigationScreenState extends State<NavigationScreen> {
                 iconSize: 24, // tab button icon size
                 tabBackgroundColor: Colors.grey.shade800, // selected tab background color
                 padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 5), // navigation bar padding
-                tabs: const [
+                tabs:  [
                   GButton(
                     icon: Icons.home,
-                    text: 'Home',
+                    text: AppLocale.home.getString(context),
                   ),
                   GButton(
                     icon: Icons.insert_drive_file_outlined,
-                    text: 'Blogs',
+                    text: AppLocale.blogs.getString(context),
                   ),
                   GButton(
                     icon: Icons.settings,
-                    text: 'Settings',
+                    text: AppLocale.setting.getString(context),
                   ),
                 ]
             ),

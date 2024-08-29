@@ -1,5 +1,8 @@
+import 'package:account_saver/core/constants/app_all_strings.dart';
 import 'package:account_saver/database/database_provider.dart';
+import 'package:account_saver/main.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_localization/flutter_localization.dart';
 import 'package:provider/provider.dart';
 
 class AddBankAccount extends StatefulWidget {
@@ -28,13 +31,7 @@ class _AddBankAccountState extends State<AddBankAccount> {
   final FocusNode _accountNameFocusNode = FocusNode();
   final FocusNode _bankNameFocusNode = FocusNode();
 
-  final List<String> categories = [
-    'Personal',
-    'Family',
-    'Business',
-    'Friends',
-    'Other'
-  ];
+
 
   @override
   void dispose() {
@@ -70,6 +67,13 @@ class _AddBankAccountState extends State<AddBankAccount> {
 
   @override
   Widget build(BuildContext context) {
+    final List<String> categories = [
+      AppLocale.personal.getString(context),
+      AppLocale.family.getString(context),
+      AppLocale.business.getString(context),
+      AppLocale.friends.getString(context),
+      AppLocale.other.getString(context),
+    ];
     return Container(
       padding: const EdgeInsets.all(16.0),
       decoration: BoxDecoration(
@@ -96,8 +100,8 @@ class _AddBankAccountState extends State<AddBankAccount> {
                 ),
               ),
               const SizedBox(height: 16),
-              const Text(
-                'Add Bank Account',
+               Text(
+                AppLocale.addBankAccounts.getString(context),
                 style: TextStyle(color: Colors.white, fontSize: 20),
                 textAlign: TextAlign.center,
               ),
@@ -105,8 +109,8 @@ class _AddBankAccountState extends State<AddBankAccount> {
               DropdownButtonFormField<String>(
                 value: selectedCategory,
                 dropdownColor: Colors.blueGrey,
-                decoration: const InputDecoration(
-                  labelText: 'Category',
+                decoration:  InputDecoration(
+                  labelText: AppLocale.category.getString(context),
                   labelStyle: TextStyle(color: Colors.white),
                   enabledBorder: OutlineInputBorder(
                     borderSide: BorderSide(color: Colors.white70),
@@ -138,8 +142,8 @@ class _AddBankAccountState extends State<AddBankAccount> {
               TextFormField(
                 controller: _accountNameController,
                 focusNode: _accountNameFocusNode,
-                decoration: const InputDecoration(
-                  labelText: 'Name of account holder',
+                decoration:  InputDecoration(
+                  labelText: AppLocale.addBankAccounts.getString(context),
                   labelStyle: TextStyle(color: Colors.white),
                   enabledBorder: OutlineInputBorder(
                     borderSide: BorderSide(color: Colors.white70),
@@ -161,8 +165,8 @@ class _AddBankAccountState extends State<AddBankAccount> {
               TextFormField(
                 controller: _bankNameController,
                 focusNode: _bankNameFocusNode,
-                decoration: const InputDecoration(
-                  labelText: 'Bank name',
+                decoration:  InputDecoration(
+                  labelText: AppLocale.bankName.getString(context),
                   labelStyle: TextStyle(color: Colors.white),
                   enabledBorder: OutlineInputBorder(
                     borderSide: BorderSide(color: Colors.white70),
@@ -184,8 +188,8 @@ class _AddBankAccountState extends State<AddBankAccount> {
               TextFormField(
                 controller: _accountNumberController,
                 focusNode: _accountNumberFocusNode,
-                decoration: const InputDecoration(
-                  labelText: 'Account Number',
+                decoration:  InputDecoration(
+                  labelText: AppLocale.accountNumber.getString(context),
                   labelStyle: TextStyle(color: Colors.white),
                   enabledBorder: OutlineInputBorder(
                     borderSide: BorderSide(color: Colors.white70),
@@ -207,8 +211,8 @@ class _AddBankAccountState extends State<AddBankAccount> {
               TextFormField(
                 controller: _ibanController,
                 focusNode: _ibanFocusNode,
-                decoration: const InputDecoration(
-                  labelText: 'IBAN Account Number',
+                decoration:  InputDecoration(
+                  labelText: AppLocale.ibnNumber.getString(context),
                   labelStyle: TextStyle(color: Colors.white),
                   enabledBorder: OutlineInputBorder(
                     borderSide: BorderSide(color: Colors.white70),
@@ -230,8 +234,8 @@ class _AddBankAccountState extends State<AddBankAccount> {
               TextFormField(
                 controller: _relationController,
                 focusNode: _relationFocusNode,
-                decoration: const InputDecoration(
-                  labelText: 'Relation',
+                decoration:  InputDecoration(
+                  labelText:AppLocale.relation.getString(context),
                   labelStyle: TextStyle(color: Colors.white),
                   enabledBorder: OutlineInputBorder(
                     borderSide: BorderSide(color: Colors.white70),
@@ -253,8 +257,8 @@ class _AddBankAccountState extends State<AddBankAccount> {
               TextFormField(
                 controller: _phoneNumberController,
                 focusNode: _phoneNumberFocusNode,
-                decoration: const InputDecoration(
-                  labelText: 'Phone Number',
+                decoration:  InputDecoration(
+                  labelText:AppLocale.phoneNumber.getString(context) ,
                   labelStyle: TextStyle(color: Colors.white),
                   enabledBorder: OutlineInputBorder(
                     borderSide: BorderSide(color: Colors.white70),
@@ -283,9 +287,9 @@ class _AddBankAccountState extends State<AddBankAccount> {
                     ),
                   ),
                   onPressed: _addBankAccount,
-                  child: const Text(
-                    'Add',
-                    style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+                  child:  Text(
+                    AppLocale.add.getString(context),
+                    style: const TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
                   ),
                 ),
               ),
