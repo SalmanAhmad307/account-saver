@@ -1,8 +1,11 @@
 import 'package:account_saver/core/constants/app_all_strings.dart';
+import 'package:account_saver/core/constants/app_colors.dart';
+import 'package:account_saver/core/constants/media_query.dart';
 import 'package:account_saver/database/database_provider.dart';
-import 'package:account_saver/main.dart';
+import 'package:account_saver/ui/widgets/bottom_sheet_textformfield.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_localization/flutter_localization.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 
 class AddBankAccount extends StatefulWidget {
@@ -28,10 +31,6 @@ class _AddBankAccountState extends State<AddBankAccount> {
   final FocusNode _ibanFocusNode = FocusNode();
   final FocusNode _relationFocusNode = FocusNode();
   final FocusNode _phoneNumberFocusNode = FocusNode();
-  final FocusNode _accountNameFocusNode = FocusNode();
-  final FocusNode _bankNameFocusNode = FocusNode();
-
-
 
   @override
   void dispose() {
@@ -60,6 +59,7 @@ class _AddBankAccountState extends State<AddBankAccount> {
         'favorite': 0
       };
       await provider.addBankAccount(newAccount);
+
       // ignore: use_build_context_synchronously
       Navigator.pop(context); // Close the bottom sheet
     }
@@ -76,12 +76,12 @@ class _AddBankAccountState extends State<AddBankAccount> {
     ];
     return Container(
       padding: const EdgeInsets.all(16.0),
-      decoration: BoxDecoration(
-        borderRadius: const BorderRadius.only(
+      decoration: const BoxDecoration(
+        borderRadius: BorderRadius.only(
           topLeft: Radius.circular(20),
           topRight: Radius.circular(20),
         ),
-        color: Colors.blueGrey[900],
+        color: AppColors.bottomSheetBackgroundColor,
       ),
       child: SingleChildScrollView(
         child: Form(
@@ -94,202 +94,201 @@ class _AddBankAccountState extends State<AddBankAccount> {
                   width: 60,
                   height: 4,
                   decoration: BoxDecoration(
-                    color: Colors.white70,
+                    color: const Color(0xff9EA0A1),
                     borderRadius: BorderRadius.circular(2),
                   ),
                 ),
               ),
+              //const SizedBox(height: 16),
+              // Text(
+              //   AppLocale.addBankAccounts.getString(context),
+              //   style: TextStyle(color: Colors.white, fontSize: 20),
+              //   textAlign: TextAlign.center,
+              // ),
               const SizedBox(height: 16),
-               Text(
-                AppLocale.addBankAccounts.getString(context),
-                style: TextStyle(color: Colors.white, fontSize: 20),
-                textAlign: TextAlign.center,
-              ),
-              const SizedBox(height: 16),
-              DropdownButtonFormField<String>(
-                value: selectedCategory,
-                dropdownColor: Colors.blueGrey,
-                decoration:  InputDecoration(
-                  labelText: AppLocale.category.getString(context),
-                  labelStyle: TextStyle(color: Colors.white),
-                  enabledBorder: OutlineInputBorder(
-                    borderSide: BorderSide(color: Colors.white70),
-                  ),
-                  focusedBorder: OutlineInputBorder(
-                    borderSide: BorderSide(color: Colors.cyanAccent),
-                  ),
+              Padding(
+                padding: EdgeInsets.only(
+                  left: MySize.size16,
+                  right: MySize.size16,
                 ),
-                items: categories.map((String category) {
-                  return DropdownMenuItem<String>(
-                    value: category,
-                    child: Text(category,
-                        style: const TextStyle(color: Colors.white)),
-                  );
-                }).toList(),
-                onChanged: (String? newValue) {
-                  setState(() {
-                    selectedCategory = newValue;
-                  });
-                },
-                validator: (value) {
-                  if (value == null || value.isEmpty) {
-                    return 'Please select a category';
-                  }
-                  return null;
-                },
-              ),
-              const SizedBox(height: 16),
-              TextFormField(
-                controller: _accountNameController,
-                focusNode: _accountNameFocusNode,
-                decoration:  InputDecoration(
-                  labelText: AppLocale.addBankAccounts.getString(context),
-                  labelStyle: TextStyle(color: Colors.white),
-                  enabledBorder: OutlineInputBorder(
-                    borderSide: BorderSide(color: Colors.white70),
-                  ),
-                  focusedBorder: OutlineInputBorder(
-                    borderSide: BorderSide(color: Colors.cyanAccent),
-                  ),
-                ),
-                keyboardType: TextInputType.text,
-                style: const TextStyle(color: Colors.white),
-                validator: (value) {
-                  if (value == null || value.isEmpty) {
-                    return 'Please enter a name';
-                  }
-                  return null;
-                },
-              ),
-              const SizedBox(height: 16),
-              TextFormField(
-                controller: _bankNameController,
-                focusNode: _bankNameFocusNode,
-                decoration:  InputDecoration(
-                  labelText: AppLocale.bankName.getString(context),
-                  labelStyle: TextStyle(color: Colors.white),
-                  enabledBorder: OutlineInputBorder(
-                    borderSide: BorderSide(color: Colors.white70),
-                  ),
-                  focusedBorder: OutlineInputBorder(
-                    borderSide: BorderSide(color: Colors.cyanAccent),
-                  ),
-                ),
-                keyboardType: TextInputType.text,
-                style: const TextStyle(color: Colors.white),
-                validator: (value) {
-                  if (value == null || value.isEmpty) {
-                    return 'Please enter a bank name';
-                  }
-                  return null;
-                },
-              ),
-              const SizedBox(height: 16),
-              TextFormField(
-                controller: _accountNumberController,
-                focusNode: _accountNumberFocusNode,
-                decoration:  InputDecoration(
-                  labelText: AppLocale.accountNumber.getString(context),
-                  labelStyle: TextStyle(color: Colors.white),
-                  enabledBorder: OutlineInputBorder(
-                    borderSide: BorderSide(color: Colors.white70),
-                  ),
-                  focusedBorder: OutlineInputBorder(
-                    borderSide: BorderSide(color: Colors.cyanAccent),
-                  ),
-                ),
-                keyboardType: TextInputType.number,
-                style: const TextStyle(color: Colors.white),
-                validator: (value) {
-                  if (value == null || value.isEmpty) {
-                    return 'Please enter an account number';
-                  }
-                  return null;
-                },
-              ),
-              const SizedBox(height: 16),
-              TextFormField(
-                controller: _ibanController,
-                focusNode: _ibanFocusNode,
-                decoration:  InputDecoration(
-                  labelText: AppLocale.ibnNumber.getString(context),
-                  labelStyle: TextStyle(color: Colors.white),
-                  enabledBorder: OutlineInputBorder(
-                    borderSide: BorderSide(color: Colors.white70),
-                  ),
-                  focusedBorder: OutlineInputBorder(
-                    borderSide: BorderSide(color: Colors.cyanAccent),
-                  ),
-                ),
-                keyboardType: TextInputType.text,
-                style: const TextStyle(color: Colors.white),
-                validator: (value) {
-                  if (value == null || value.isEmpty) {
-                    return 'Please enter an IBAN account number';
-                  }
-                  return null;
-                },
-              ),
-              const SizedBox(height: 16),
-              TextFormField(
-                controller: _relationController,
-                focusNode: _relationFocusNode,
-                decoration:  InputDecoration(
-                  labelText:AppLocale.relation.getString(context),
-                  labelStyle: TextStyle(color: Colors.white),
-                  enabledBorder: OutlineInputBorder(
-                    borderSide: BorderSide(color: Colors.white70),
-                  ),
-                  focusedBorder: OutlineInputBorder(
-                    borderSide: BorderSide(color: Colors.cyanAccent),
-                  ),
-                ),
-                keyboardType: TextInputType.text,
-                style: const TextStyle(color: Colors.white),
-                validator: (value) {
-                  if (value == null || value.isEmpty) {
-                    return 'Please enter a relation';
-                  }
-                  return null;
-                },
-              ),
-              const SizedBox(height: 16),
-              TextFormField(
-                controller: _phoneNumberController,
-                focusNode: _phoneNumberFocusNode,
-                decoration:  InputDecoration(
-                  labelText:AppLocale.phoneNumber.getString(context) ,
-                  labelStyle: TextStyle(color: Colors.white),
-                  enabledBorder: OutlineInputBorder(
-                    borderSide: BorderSide(color: Colors.white70),
-                  ),
-                  focusedBorder: OutlineInputBorder(
-                    borderSide: BorderSide(color: Colors.cyanAccent),
-                  ),
-                ),
-                keyboardType: TextInputType.phone,
-                style: const TextStyle(color: Colors.white),
-                validator: (value) {
-                  if (value == null || value.isEmpty) {
-                    return 'Please enter a phone number';
-                  }
-                  return null;
-                },
-              ),
-              const SizedBox(height: 16),
-              Center(
-                child: ElevatedButton(
-                  style: ElevatedButton.styleFrom(
-                    padding: const EdgeInsets.symmetric(
-                        vertical: 12, horizontal: 24),
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(20),
+                child: DropdownButtonFormField<String>(
+                  value: selectedCategory,
+                  dropdownColor: Colors.blueGrey, // Dropdown background color
+                  decoration: InputDecoration(
+                    labelText: AppLocale.category.getString(context),
+                    labelStyle: GoogleFonts.inter(
+                      fontSize: 16.0,
+                      fontWeight: FontWeight.w500,
+                      color: Colors.white, // Label text color
+                    ),
+                    filled: true,
+                    fillColor: Colors.white, // Background color of the dropdown
+                    contentPadding: EdgeInsets.symmetric(
+                      vertical: MySize.size22, // Vertical padding for text
+                      horizontal: MySize.size22, // Horizontal padding for text
+                    ),
+                    border: InputBorder.none, // Removes the border line
+                    enabledBorder: OutlineInputBorder(
+                      borderSide: BorderSide.none, // No border when enabled
+                      borderRadius:
+                          BorderRadius.circular(15), // Circular border radius
+                    ),
+                    focusedBorder: OutlineInputBorder(
+                      borderSide: BorderSide.none, // No border when focused
+                      borderRadius:
+                          BorderRadius.circular(15), // Circular border radius
                     ),
                   ),
-                  onPressed: _addBankAccount,
-                  child:  Text(
-                    AppLocale.add.getString(context),
-                    style: const TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+                  items: categories.map((String category) {
+                    return DropdownMenuItem<String>(
+                      value: category,
+                      child: Text(
+                        category,
+                        style: GoogleFonts.inter(
+                          fontSize: 16.0, // Font size of dropdown options
+                          fontWeight: FontWeight.w500,
+                          color: Colors.black, // Text color in dropdown options
+                        ),
+                      ),
+                    );
+                  }).toList(),
+                  onChanged: (String? newValue) {
+                    setState(() {
+                      selectedCategory = newValue;
+                    });
+                  },
+                  validator: (value) {
+                    if (value == null || value.isEmpty) {
+                      return 'Please select a category';
+                    }
+                    return null;
+                  },
+                ),
+              ),
+              const SizedBox(height: 16),
+              BottomSheetTextFormField(
+                controller: _accountNameController,
+                hintText: //   AppLocale.addBankAccounts.getString(context),
+               "Account Holder Name",
+                keyboardType: TextInputType.emailAddress,
+                validator: (value) {
+                  if (value == null || value.isEmpty) {
+                    return 'Name cannot be empty';
+                  }
+                  return null;
+                },
+              ),
+
+              const SizedBox(height: 16),
+              BottomSheetTextFormField(
+                controller: _bankNameController,
+                hintText: "Bank Name",
+                keyboardType: TextInputType.emailAddress,
+                validator: (value) {
+                  if (value == null || value.isEmpty) {
+                    return 'Name cannot be empty';
+                  }
+                  return null;
+                },
+              ),
+
+              const SizedBox(height: 5),
+              BottomSheetTextFormField(
+                controller: _accountNumberController,
+                hintText: "Add Account Number",
+                keyboardType: TextInputType.emailAddress,
+                validator: (value) {
+                  if (value == null || value.isEmpty) {
+                    return 'Name cannot be empty';
+                  }
+                  return null;
+                },
+              ),
+
+              const SizedBox(height: 16),
+              BottomSheetTextFormField(
+                controller: _ibanController,
+                hintText: "Add IBAN Number",
+                keyboardType: TextInputType.emailAddress,
+                validator: (value) {
+                  if (value == null || value.isEmpty) {
+                    return 'Name cannot be empty';
+                  }
+                  return null;
+                },
+              ),
+
+              const SizedBox(height: 16),
+              BottomSheetTextFormField(
+                controller: _relationController,
+                hintText: "Relation With Account Holder",
+                keyboardType: TextInputType.emailAddress,
+                validator: (value) {
+                  if (value == null || value.isEmpty) {
+                    return 'Name cannot be empty';
+                  }
+                  return null;
+                },
+              ),
+
+              const SizedBox(height: 16),
+              BottomSheetTextFormField(
+                controller: _phoneNumberController,
+                hintText: "Phone Number",
+                keyboardType: TextInputType.emailAddress,
+                validator: (value) {
+                  if (value == null || value.isEmpty) {
+                    return 'Name cannot be empty';
+                  }
+                  return null;
+                },
+              ),
+
+              const SizedBox(height: 16),
+              Center(
+                child: SizedBox(
+                  width: 140,
+                  child: ElevatedButton(
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: const Color(
+                          0xffF5D5C6), // Background color of the button
+                      padding: const EdgeInsets.symmetric(
+                          vertical: 12, horizontal: 24),
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(20),
+                      ),
+                    ),
+                    onPressed: _addBankAccount,
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        // Text widget
+                        Text(
+                          AppLocale.add.getString(context),
+                          style: const TextStyle(
+                              fontSize: 18,
+                              fontWeight: FontWeight.bold,
+                              color: Colors.white), // Text color is white
+                        ),
+                        const SizedBox(
+                            width:
+                                20), // Space between text and the vertical line
+                        // Container as vertical line
+                        Container(
+                          width: 2, // Line thickness
+                          height: 24, // Height of the vertical line
+                          color: const Color(
+                              0xffEBC0AC), // Color of the vertical line
+                        ),
+                        const SizedBox(
+                            width: 8), // Space between vertical line and icon
+                        // Icon widget
+                        const Icon(
+                          Icons.add,
+                          color: Colors.white, // Icon color is white
+                        ),
+                      ],
+                    ),
                   ),
                 ),
               ),

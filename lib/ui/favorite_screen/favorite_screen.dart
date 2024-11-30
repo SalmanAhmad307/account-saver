@@ -1,5 +1,4 @@
 import 'package:account_saver/core/constants/app_all_strings.dart';
-import 'package:account_saver/main.dart';
 import 'package:account_saver/ui/widgets/bank_account_tile.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_localization/flutter_localization.dart';

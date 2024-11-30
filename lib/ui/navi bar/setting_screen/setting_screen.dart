@@ -38,8 +38,8 @@ class _SettingScreenState extends State<SettingScreen> {
     final prefs = await SharedPreferences.getInstance();
     setState(() {
       currentLanguageCode = prefs.getString('selected_language_code') ?? 'en';
-      selectedLanguage = languages
-          .firstWhere((lang) => lang['code'] == currentLanguageCode)['name'] ??
+      selectedLanguage = languages.firstWhere(
+              (lang) => lang['code'] == currentLanguageCode)['name'] ??
           'English';
     });
   }
@@ -60,19 +60,21 @@ class _SettingScreenState extends State<SettingScreen> {
               children: languages
                   .map(
                     (language) => ListTile(
-                  leading: Text(language['flag']!),
-                  title: Text(language['name']!),
-                  onTap: () {
-                    setState(() {
-                      selectedLanguage = language['name']!;
-                      currentLanguageCode = language['code']!;
-                      localization.translate(language['code']!); // Apply language change
-                    });
-                    _saveSelectedLanguage(language['code']!); // Save language preference
-                    Navigator.of(context).pop();
-                  },
-                ),
-              )
+                      leading: Text(language['flag']!),
+                      title: Text(language['name']!),
+                      onTap: () {
+                        setState(() {
+                          selectedLanguage = language['name']!;
+                          currentLanguageCode = language['code']!;
+                          localization.translate(
+                              language['code']!); // Apply language change
+                        });
+                        _saveSelectedLanguage(
+                            language['code']!); // Save language preference
+                        Navigator.of(context).pop();
+                      },
+                    ),
+                  )
                   .toList(),
             ),
           ),
@@ -87,7 +89,7 @@ class _SettingScreenState extends State<SettingScreen> {
 
     return Scaffold(
       backgroundColor: Colors.grey.shade200,
-      appBar: CustomAppBar(title: AppLocale.setting.getString(context)),
+      //appBar: CustomAppBar(title: AppLocale.setting.getString(context)),
       body: Padding(
         padding: const EdgeInsets.all(20.0),
         child: Column(
@@ -101,7 +103,7 @@ class _SettingScreenState extends State<SettingScreen> {
                     color: Colors.grey.withOpacity(0.5),
                     spreadRadius: 5,
                     blurRadius: 7,
-                    offset: Offset(0, 3),
+                    offset: const Offset(0, 3),
                   ),
                 ],
                 borderRadius: BorderRadius.circular(10),
@@ -112,12 +114,11 @@ class _SettingScreenState extends State<SettingScreen> {
                 child: Column(
                   children: [
                     GestureDetector(
-                      onTap: ()=>_showLanguageDialog(context),
+                      onTap: () => _showLanguageDialog(context),
                       child: SettingScreenWidget(
                         text:
-                        '${AppLocale.selectLanguage.getString(context)} ($selectedLanguage)',
+                            '${AppLocale.selectLanguage.getString(context)} ($selectedLanguage)',
                         beforeIcon: Icons.language,
-
                       ),
                     ),
                     Divider(
@@ -144,7 +145,7 @@ class _SettingScreenState extends State<SettingScreen> {
                             ),
                           ],
                         ),
-                        Spacer(),
+                        const Spacer(),
                         Transform.scale(
                           scale: 0.9,
                           child: Switch(

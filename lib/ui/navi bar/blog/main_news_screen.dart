@@ -1,4 +1,3 @@
-import 'package:account_saver/core/constants/media_query.dart';
 import 'package:account_saver/ui/navi%20bar/blog/blog_catogery_screen.dart';
 import 'package:account_saver/ui/navi%20bar/blog/blog_headline_screen.dart';
 import 'package:flutter/cupertino.dart';
@@ -21,10 +20,10 @@ class _MainNewsScreenState extends State<MainNewsScreen> {
             height: 260,
             //height: height * 0.30,
             child: const BlogScreen()),
-        Expanded(
+        const Expanded(
             // width: width,
             // height: height * 0.34,
-            child: const BlogCategoryScreen()),
+            child: BlogCategoryScreen()),
       ],
     );
   }

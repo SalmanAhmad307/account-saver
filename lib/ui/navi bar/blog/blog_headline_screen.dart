@@ -41,7 +41,6 @@ class _BlogScreenState extends State<BlogScreen> {
   Widget build(BuildContext context) {
     MySize().init(context);
     final width = MediaQuery.sizeOf(context).width * 1;
-    final height = MediaQuery.sizeOf(context).height;
 
     return Scaffold(
       appBar: AppBar(
