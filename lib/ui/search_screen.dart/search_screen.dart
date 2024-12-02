@@ -43,9 +43,9 @@ class SearchScreen extends StatelessWidget {
                               labelText: AppLocale.search.getString(context),
                               border: InputBorder.none,
                               prefixIcon:
-                                  Icon(Icons.search, color: Colors.blueGrey),
+                                  const Icon(Icons.search, color: Colors.blueGrey),
                               contentPadding:
-                                  EdgeInsets.symmetric(horizontal: 16),
+                                  const EdgeInsets.symmetric(horizontal: 16),
                             ),
                           ),
                         ),
@@ -65,13 +65,13 @@ class SearchScreen extends StatelessWidget {
                         iban: account['iban'],
                         relation: account['relation'],
                         phoneNumber: account['phone_number'],
-                        onDelete: () async {
-                          final provider = Provider.of<DatabaseProvider>(
-                              context,
-                              listen: false);
-                          await provider.deleteBankAccount(
-                              account['id']); // Pass the ID to delete
-                        },
+                        // onDelete: () async {
+                        //   final provider = Provider.of<DatabaseProvider>(
+                        //       context,
+                        //       listen: false);
+                        //   await provider.deleteBankAccount(
+                        //       account['id']); // Pass the ID to delete
+                        // },
                         accountHolderName:
                             account["account_holder_name"] ?? "n/a",
                         bankName: account["bank_name"] ?? "n/a",

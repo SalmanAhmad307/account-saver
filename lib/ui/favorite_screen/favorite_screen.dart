@@ -32,7 +32,7 @@ class _FavoriteScreenState extends State<FavoriteScreen> {
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
-        title:  Text(AppLocale.favourite.getString(context)),
+        title: Text(AppLocale.favourite.getString(context)),
       ),
       body: Consumer<DatabaseProvider>(
         builder: (context, provider, child) {
@@ -44,7 +44,9 @@ class _FavoriteScreenState extends State<FavoriteScreen> {
               } else if (snapshot.hasError) {
                 return Center(child: Text('Error: ${snapshot.error}'));
               } else if (provider.favoriteAccounts.isEmpty) {
-                return  Center(child: Text(AppLocale.noFavouriteAccounts.getString(context)));
+                return Center(
+                    child:
+                        Text(AppLocale.noFavouriteAccounts.getString(context)));
               } else {
                 return ListView.builder(
                   itemCount: provider.favoriteAccounts.length,
@@ -56,14 +58,14 @@ class _FavoriteScreenState extends State<FavoriteScreen> {
                       iban: account['iban'],
                       relation: account['relation'],
                       phoneNumber: account['phone_number'],
-                      onDelete: () async {
-                        final provider = Provider.of<DatabaseProvider>(context,
-                            listen: false);
-                        await provider.deleteBankAccount(
-                            account['id']); // Pass the ID to delete
-                        await provider
-                            .fetchFavoriteAccounts(); // Refresh the favorite accounts
-                      },
+                      // onDelete: () async {
+                      //   final provider = Provider.of<DatabaseProvider>(context,
+                      //       listen: false);
+                      //   await provider.deleteBankAccount(
+                      //       account['id']); // Pass the ID to delete
+                      //   await provider
+                      //       .fetchFavoriteAccounts(); // Refresh the favorite accounts
+                      // },
                       accountHolderName:
                           account['account_holder_name'] ?? "n/a",
                       bankName: account['bank_name'] ?? "n/a",

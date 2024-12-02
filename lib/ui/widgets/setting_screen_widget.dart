@@ -57,7 +57,7 @@ class SettingScreenWidget extends StatelessWidget {
         //     fontWeight: FontWeight.bold,
         //   ),
         // ),
-        Spacer(),
+        const Spacer(),
         GestureDetector(
           onTap: onPressed,
           child: Icon(

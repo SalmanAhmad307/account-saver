@@ -67,6 +67,7 @@ class _AddBankAccountState extends State<AddBankAccount> {
 
   @override
   Widget build(BuildContext context) {
+    MySize().init(context);
     final List<String> categories = [
       AppLocale.personal.getString(context),
       AppLocale.family.getString(context),
@@ -75,11 +76,11 @@ class _AddBankAccountState extends State<AddBankAccount> {
       AppLocale.other.getString(context),
     ];
     return Container(
-      padding: const EdgeInsets.all(16.0),
-      decoration: const BoxDecoration(
+      padding: EdgeInsets.all(MySize.size16),
+      decoration: BoxDecoration(
         borderRadius: BorderRadius.only(
-          topLeft: Radius.circular(20),
-          topRight: Radius.circular(20),
+          topLeft: Radius.circular(MySize.size16),
+          topRight: Radius.circular(MySize.size16),
         ),
         color: AppColors.bottomSheetBackgroundColor,
       ),
@@ -91,21 +92,15 @@ class _AddBankAccountState extends State<AddBankAccount> {
             children: [
               Center(
                 child: Container(
-                  width: 60,
-                  height: 4,
+                  width: MySize.size60,
+                  height: MySize.size4,
                   decoration: BoxDecoration(
                     color: const Color(0xff9EA0A1),
-                    borderRadius: BorderRadius.circular(2),
+                    borderRadius: BorderRadius.circular(MySize.size2),
                   ),
                 ),
               ),
-              //const SizedBox(height: 16),
-              // Text(
-              //   AppLocale.addBankAccounts.getString(context),
-              //   style: TextStyle(color: Colors.white, fontSize: 20),
-              //   textAlign: TextAlign.center,
-              // ),
-              const SizedBox(height: 16),
+              SizedBox(height: MySize.size16),
               Padding(
                 padding: EdgeInsets.only(
                   left: MySize.size16,
@@ -165,11 +160,11 @@ class _AddBankAccountState extends State<AddBankAccount> {
                   },
                 ),
               ),
-              const SizedBox(height: 16),
+              SizedBox(height: MySize.size16),
               BottomSheetTextFormField(
                 controller: _accountNameController,
                 hintText: //   AppLocale.addBankAccounts.getString(context),
-               "Account Holder Name",
+                    "Account Holder Name",
                 keyboardType: TextInputType.emailAddress,
                 validator: (value) {
                   if (value == null || value.isEmpty) {
@@ -178,8 +173,7 @@ class _AddBankAccountState extends State<AddBankAccount> {
                   return null;
                 },
               ),
-
-              const SizedBox(height: 16),
+              SizedBox(height: MySize.size16),
               BottomSheetTextFormField(
                 controller: _bankNameController,
                 hintText: "Bank Name",
@@ -191,8 +185,7 @@ class _AddBankAccountState extends State<AddBankAccount> {
                   return null;
                 },
               ),
-
-              const SizedBox(height: 5),
+              SizedBox(height: MySize.size16),
               BottomSheetTextFormField(
                 controller: _accountNumberController,
                 hintText: "Add Account Number",
@@ -204,8 +197,7 @@ class _AddBankAccountState extends State<AddBankAccount> {
                   return null;
                 },
               ),
-
-              const SizedBox(height: 16),
+              SizedBox(height: MySize.size16),
               BottomSheetTextFormField(
                 controller: _ibanController,
                 hintText: "Add IBAN Number",
@@ -217,8 +209,7 @@ class _AddBankAccountState extends State<AddBankAccount> {
                   return null;
                 },
               ),
-
-              const SizedBox(height: 16),
+              SizedBox(height: MySize.size16),
               BottomSheetTextFormField(
                 controller: _relationController,
                 hintText: "Relation With Account Holder",
@@ -230,8 +221,7 @@ class _AddBankAccountState extends State<AddBankAccount> {
                   return null;
                 },
               ),
-
-              const SizedBox(height: 16),
+              SizedBox(height: MySize.size16),
               BottomSheetTextFormField(
                 controller: _phoneNumberController,
                 hintText: "Phone Number",
@@ -243,8 +233,7 @@ class _AddBankAccountState extends State<AddBankAccount> {
                   return null;
                 },
               ),
-
-              const SizedBox(height: 16),
+              SizedBox(height: MySize.size16),
               Center(
                 child: SizedBox(
                   width: 140,
@@ -270,18 +259,19 @@ class _AddBankAccountState extends State<AddBankAccount> {
                               fontWeight: FontWeight.bold,
                               color: Colors.white), // Text color is white
                         ),
-                        const SizedBox(
-                            width:
-                                20), // Space between text and the vertical line
+                        SizedBox(
+                            width: MySize
+                                .size20), // Space between text and the vertical line
                         // Container as vertical line
                         Container(
-                          width: 2, // Line thickness
-                          height: 24, // Height of the vertical line
+                          width: MySize.size2, // Line thickness
+                          height: MySize.size24, // Height of the vertical line
                           color: const Color(
                               0xffEBC0AC), // Color of the vertical line
                         ),
-                        const SizedBox(
-                            width: 8), // Space between vertical line and icon
+                        SizedBox(
+                            width: MySize
+                                .size8), // Space between vertical line and icon
                         // Icon widget
                         const Icon(
                           Icons.add,

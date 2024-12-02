@@ -47,7 +47,7 @@ class _HomeScreenState extends State<HomeScreen> {
               children: [
                 CustomAppBar(title: AppLocale.home.getString(context)),
                 SizedBox(height: MySize.size30),
-                CustomTextFormField(),
+                const CustomTextFormField(),
                 SizedBox(height: MySize.size15),
 
                 Padding(
@@ -179,13 +179,13 @@ class _HomeScreenState extends State<HomeScreen> {
                                     iban: account['iban'],
                                     relation: account['relation'],
                                     phoneNumber: account['phone_number'],
-                                    onDelete: () async {
-                                      final provider =
-                                          Provider.of<DatabaseProvider>(context,
-                                              listen: false);
-                                      await provider.deleteBankAccount(account[
-                                          'id']); // Pass the ID to delete
-                                    },
+                                    // onDelete: () async {
+                                    //   final provider =
+                                    //       Provider.of<DatabaseProvider>(context,
+                                    //           listen: false);
+                                    //   await provider.deleteBankAccount(account[
+                                    //       'id']); // Pass the ID to delete
+                                    // },
                                     accountHolderName:
                                         account["account_holder_name"] ?? "n/a",
                                     bankName: account["bank_name"] ?? "n/a",

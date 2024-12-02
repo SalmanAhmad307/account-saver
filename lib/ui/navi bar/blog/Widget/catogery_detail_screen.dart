@@ -222,6 +222,7 @@ class ArticleDetailScreen extends StatelessWidget {
 
   void _launchURL(String url) async {
     try {
+      // ignore: deprecated_member_use
       await launch(url);
     } catch (e) {
       // Handle the error if the URL can't be opened

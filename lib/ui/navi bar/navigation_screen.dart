@@ -88,7 +88,7 @@ class _NavigationScreenState extends State<NavigationScreen> {
                     Expanded(
                       child: GestureDetector(
                         onTap: () {
-                          _onTabTapped(2); // Settings
+                          _onTabTapped(1); // Settings
                         },
                         child: Container(
                           padding: EdgeInsets.only(left: MySize.size40),
@@ -122,6 +122,7 @@ class _NavigationScreenState extends State<NavigationScreen> {
               child: GestureDetector(
                   onTap: () {
                     showModalBottomSheet(
+                      isScrollControlled: true,
                       context: context,
                       builder: (context) => const AddBankAccount(),
                     );

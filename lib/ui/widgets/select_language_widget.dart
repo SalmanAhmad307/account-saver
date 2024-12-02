@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
 
 class SelectLanguageWidget extends StatefulWidget {
+  const SelectLanguageWidget({super.key});
+
   @override
+  // ignore: library_private_types_in_public_api
   _MyHomePageState createState() => _MyHomePageState();
 }
 
@@ -12,7 +15,7 @@ class _MyHomePageState extends State<SelectLanguageWidget> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Language Dropdown'),
+        title: const Text('Language Dropdown'),
       ),
       body: Center(
         child: DropdownButton<String>(
@@ -22,8 +25,9 @@ class _MyHomePageState extends State<SelectLanguageWidget> {
               _selectedLanguage = newValue!;
             });
           },
-          items: [
+          items: const[
             DropdownMenuItem(
+              value: 'English',
               child: Row(
                 children: [
                  // Image.asset('assets/flags/us.png', width: 20, height: 20),
@@ -31,9 +35,9 @@ class _MyHomePageState extends State<SelectLanguageWidget> {
                   Text('English'),
                 ],
               ),
-              value: 'English',
             ),
             DropdownMenuItem(
+              value: 'Arabic',
               child: Row(
                 children: [
                  // Image.asset('assets/flags/sa.png', width: 20, height: 20),
@@ -41,9 +45,9 @@ class _MyHomePageState extends State<SelectLanguageWidget> {
                   Text('Arabic'),
                 ],
               ),
-              value: 'Arabic',
             ),
             DropdownMenuItem(
+              value: 'German',
               child: Row(
                 children: [
                  // Image.asset('assets/flags/de.png', width: 20, height: 20),
@@ -51,9 +55,9 @@ class _MyHomePageState extends State<SelectLanguageWidget> {
                   Text('German'),
                 ],
               ),
-              value: 'German',
             ),
             DropdownMenuItem(
+              value: 'Chinese',
               child: Row(
                 children: [
                   //Image.asset('assets/flags/cn.png', width: 20, height: 20),
@@ -61,9 +65,9 @@ class _MyHomePageState extends State<SelectLanguageWidget> {
                   Text('Chinese'),
                 ],
               ),
-              value: 'Chinese',
             ),
             DropdownMenuItem(
+              value: 'Spanish',
               child: Row(
                 children: [
                  // Image.asset('assets/flags/es.png', width: 20, height: 20),
@@ -71,7 +75,6 @@ class _MyHomePageState extends State<SelectLanguageWidget> {
                   Text('Spanish'),
                 ],
               ),
-              value: 'Spanish',
             ),
           ],
         ),

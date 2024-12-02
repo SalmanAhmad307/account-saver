@@ -3,6 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class CustomTextFormField extends StatelessWidget {
+  const CustomTextFormField({super.key});
+
   @override
   Widget build(BuildContext context) {
     MySize().init(context);
@@ -24,9 +26,9 @@ class CustomTextFormField extends StatelessWidget {
               fontWeight: FontWeight.w500, // Font weight
               color: Colors.black54, // Hint text color
             ),
-            prefixIcon: Icon(Icons.search, color: Colors.grey), // Search icon
+            prefixIcon: const Icon(Icons.search, color: Colors.grey), // Search icon
             filled: true,
-            fillColor: Color(0xFFF0F5F9), // Background color
+            fillColor: const Color(0xFFF0F5F9), // Background color
             contentPadding: EdgeInsets.symmetric(
                 vertical: MySize.size10,
                 horizontal: MySize.size20), // Padding inside the field

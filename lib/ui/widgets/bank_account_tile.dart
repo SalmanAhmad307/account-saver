@@ -203,6 +203,7 @@
 // }
 import 'package:account_saver/core/constants/media_query.dart';
 import 'package:account_saver/database/database_provider.dart';
+import 'package:account_saver/ui/widgets/detail_information_bottomsheet.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:url_launcher/url_launcher.dart';
@@ -219,7 +220,6 @@ class BankAccountTile extends StatefulWidget {
   final String accountHolderName;
   final String bankName;
   final Map<String, dynamic> account;
-  final void Function() onDelete;
 
   const BankAccountTile({
     super.key,
@@ -231,10 +231,10 @@ class BankAccountTile extends StatefulWidget {
     required this.accountHolderName,
     required this.bankName,
     required this.account,
-    required this.onDelete,
   });
 
   @override
+  // ignore: library_private_types_in_public_api
   _BankAccountTileState createState() => _BankAccountTileState();
 }
 
@@ -308,8 +308,15 @@ class _BankAccountTileState extends State<BankAccountTile> {
                 // Toggle additional details or navigation
                 showModalBottomSheet(
                   context: context,
-                  builder: (context) => BankAccountEditSheet(
+                  isScrollControlled: true,
+                  builder: (context) => DetailInformationBottomsheet(
                     account: widget.account,
+                    onDelete: () async {
+                      final provider =
+                          Provider.of<DatabaseProvider>(context, listen: false);
+                      await provider.deleteBankAccount(
+                          widget.account['id']); // Pass the ID to delete
+                    },
                   ),
                 );
               },
@@ -336,6 +343,7 @@ class _BankAccountTileState extends State<BankAccountTile> {
         throw 'Could not launch $url';
       }
     } catch (e) {
+      // ignore: use_build_context_synchronously
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(content: Text('Failed to open browser. Error: $e')),
       );

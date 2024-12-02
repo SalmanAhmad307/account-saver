@@ -1,6 +1,5 @@
 import 'package:account_saver/core/constants/media_query.dart';
 import 'package:account_saver/main.dart';
-import 'package:account_saver/ui/widgets/custom_appbar.dart';
 import 'package:account_saver/ui/widgets/setting_screen_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_localization/flutter_localization.dart';
