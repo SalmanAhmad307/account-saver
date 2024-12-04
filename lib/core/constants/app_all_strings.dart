@@ -97,7 +97,7 @@ mixin AppLocale {
     nameOfAccountHolder: 'اسم صاحب الحساب',
     bankName: 'اسم البنك',
     accountNumber: 'رقم الحساب',
-    ibnNumber: 'رقم IBAN',
+    ibnNumber: 'رقم الآيبان',
     phoneNumber: 'رقم الهاتف',
     relation: 'العلاقة',
     add: 'إضافة',

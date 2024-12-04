@@ -164,7 +164,7 @@ class _AddBankAccountState extends State<AddBankAccount> {
               BottomSheetTextFormField(
                 controller: _accountNameController,
                 hintText: //   AppLocale.addBankAccounts.getString(context),
-                    "Account Holder Name",
+                    AppLocale.nameOfAccountHolder.getString(context),
                 keyboardType: TextInputType.emailAddress,
                 validator: (value) {
                   if (value == null || value.isEmpty) {
@@ -176,7 +176,7 @@ class _AddBankAccountState extends State<AddBankAccount> {
               SizedBox(height: MySize.size16),
               BottomSheetTextFormField(
                 controller: _bankNameController,
-                hintText: "Bank Name",
+                hintText: AppLocale.bankName.getString(context),
                 keyboardType: TextInputType.emailAddress,
                 validator: (value) {
                   if (value == null || value.isEmpty) {
@@ -188,8 +188,8 @@ class _AddBankAccountState extends State<AddBankAccount> {
               SizedBox(height: MySize.size16),
               BottomSheetTextFormField(
                 controller: _accountNumberController,
-                hintText: "Add Account Number",
-                keyboardType: TextInputType.emailAddress,
+                hintText: AppLocale.accountNumber.getString(context),
+                keyboardType: TextInputType.text,
                 validator: (value) {
                   if (value == null || value.isEmpty) {
                     return 'Name cannot be empty';
@@ -200,8 +200,8 @@ class _AddBankAccountState extends State<AddBankAccount> {
               SizedBox(height: MySize.size16),
               BottomSheetTextFormField(
                 controller: _ibanController,
-                hintText: "Add IBAN Number",
-                keyboardType: TextInputType.emailAddress,
+                hintText: AppLocale.ibnNumber.getString(context),
+                keyboardType: TextInputType.text,
                 validator: (value) {
                   if (value == null || value.isEmpty) {
                     return 'Name cannot be empty';
@@ -212,7 +212,7 @@ class _AddBankAccountState extends State<AddBankAccount> {
               SizedBox(height: MySize.size16),
               BottomSheetTextFormField(
                 controller: _relationController,
-                hintText: "Relation With Account Holder",
+                hintText: AppLocale.relation.getString(context),
                 keyboardType: TextInputType.emailAddress,
                 validator: (value) {
                   if (value == null || value.isEmpty) {
@@ -224,7 +224,7 @@ class _AddBankAccountState extends State<AddBankAccount> {
               SizedBox(height: MySize.size16),
               BottomSheetTextFormField(
                 controller: _phoneNumberController,
-                hintText: "Phone Number",
+                hintText:AppLocale.phoneNumber.getString(context),
                 keyboardType: TextInputType.emailAddress,
                 validator: (value) {
                   if (value == null || value.isEmpty) {
@@ -236,7 +236,7 @@ class _AddBankAccountState extends State<AddBankAccount> {
               SizedBox(height: MySize.size16),
               Center(
                 child: SizedBox(
-                  width: 140,
+                  width: 150,
                   child: ElevatedButton(
                     style: ElevatedButton.styleFrom(
                       backgroundColor: const Color(

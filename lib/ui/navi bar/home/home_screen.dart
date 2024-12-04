@@ -51,7 +51,7 @@ class _HomeScreenState extends State<HomeScreen> {
         backgroundColor: Colors.white,
         body: Column(
           children: [
-            CustomAppBar(title: "Home"),
+            const CustomAppBar(title: "Home"),
             SizedBox(height: MySize.size20),
             Padding(
               padding: EdgeInsets.only(left: MySize.size16),
