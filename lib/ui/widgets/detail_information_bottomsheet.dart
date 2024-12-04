@@ -1,9 +1,11 @@
+import 'package:account_saver/core/constants/app_colors.dart';
 import 'package:account_saver/core/constants/media_query.dart';
 import 'package:account_saver/database/database_provider.dart';
 import 'package:account_saver/ui/widgets/edit_bank_info_sheet.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:share_plus/share_plus.dart';
+import 'package:flutter/services.dart';
 
 class DetailInformationBottomsheet extends StatefulWidget {
   final Map<String, dynamic> account;
@@ -351,6 +353,20 @@ Category: ${account['category']}
               ],
             ),
           ),
+          if (label == "Account Number" || label == "IBAN") // Conditional check
+            IconButton(
+              icon: const Icon(Icons.copy,
+                  size: 30.0, color: AppColors.primaryColor),
+              onPressed: () {
+                Clipboard.setData(ClipboardData(text: value));
+                // Optional: Provide feedback to the user
+                ScaffoldMessenger.of(context).showSnackBar(
+                  SnackBar(
+                    content: Text('$label copied to clipboard'),
+                  ),
+                );
+              },
+            ),
         ],
       ),
     );

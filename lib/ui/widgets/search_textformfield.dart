@@ -3,7 +3,12 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class CustomTextFormField extends StatelessWidget {
-  const CustomTextFormField({super.key});
+final TextEditingController controller;
+
+    const CustomTextFormField({
+    super.key,
+    required this.controller // Default to text input
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -18,7 +23,8 @@ class CustomTextFormField extends StatelessWidget {
           Navigator.pushNamed(context, '/search');
         },
         child: TextFormField(
-          readOnly: true, // Makes the field non-editable
+          controller: controller,
+//          readOnly: true, // Makes the field non-editable
           decoration: InputDecoration(
             hintText: 'Search...', // Placeholder text
             hintStyle: GoogleFonts.inter(
@@ -26,7 +32,8 @@ class CustomTextFormField extends StatelessWidget {
               fontWeight: FontWeight.w500, // Font weight
               color: Colors.black54, // Hint text color
             ),
-            prefixIcon: const Icon(Icons.search, color: Colors.grey), // Search icon
+            prefixIcon:
+                const Icon(Icons.search, color: Colors.grey), // Search icon
             filled: true,
             fillColor: const Color(0xFFF0F5F9), // Background color
             contentPadding: EdgeInsets.symmetric(
