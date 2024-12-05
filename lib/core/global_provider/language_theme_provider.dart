@@ -3,6 +3,9 @@ import 'package:shared_preferences/shared_preferences.dart';
 
 
 class LanguageAndThemeProvider with ChangeNotifier {
+
+   bool _isDarkTheme = false; // Default to light theme
+  bool get isDarkTheme => _isDarkTheme;
   LanguageAndThemeProvider() {
     getLocale();
     // getTheme();
@@ -214,6 +217,19 @@ class LanguageAndThemeProvider with ChangeNotifier {
 
   // ThemeData _currentTheme = lightTheme;
   //ThemeData get currentTheme => _currentTheme;
+
+  void toggleTheme(bool value) async {
+    _isDarkTheme = !_isDarkTheme;
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    await prefs.setBool('isDarkTheme', _isDarkTheme);
+    notifyListeners();
+  }
+
+  Future<void> loadTheme() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    _isDarkTheme = prefs.getBool('isDarkTheme') ?? false;
+    notifyListeners();
+  }
 
   setTheme(String themeName) async {
     SharedPreferences themePreferences = await SharedPreferences.getInstance();

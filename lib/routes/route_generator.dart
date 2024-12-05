@@ -15,7 +15,7 @@ class RouteGenerator {
       case Routes.profile:
         return MaterialPageRoute(builder: (_) => const BlogScreen());
       case Routes.settings:
-        return MaterialPageRoute(builder: (_) => const SettingScreen());
+       // return MaterialPageRoute(builder: (_) => const SettingScreen());
       case Routes.favorites:
         return MaterialPageRoute(builder: (_) => const FavoriteScreen());
       case Routes.search: // Add the search route here

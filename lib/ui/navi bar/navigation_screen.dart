@@ -21,7 +21,6 @@ class _NavigationScreenState extends State<NavigationScreen> {
   final List<Widget> _screens = [
     const HomeScreen(),
     const MainNewsScreen(),
-    const SettingScreen(),
   ];
 
   void _onTabTapped(int index) {

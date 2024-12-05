@@ -1,4 +1,5 @@
 import 'package:account_saver/core/constants/app_all_strings.dart';
+import 'package:account_saver/core/global_provider/language_theme_provider.dart';
 import 'package:account_saver/database/database_provider.dart';
 import 'package:account_saver/routes/route_generator.dart';
 import 'package:account_saver/routes/routes.dart';
@@ -57,20 +58,26 @@ class _MyAppState extends State<MyApp> {
   }
   @override
   Widget build(BuildContext context) {
-
     return MultiProvider(
       providers: [
         ChangeNotifierProvider<DatabaseProvider>(
           create: (_) => DatabaseProvider(),
         ),
+         ChangeNotifierProvider(create:(_)=> LanguageAndThemeProvider()),
       ],
-      child:  MaterialApp(
-         supportedLocales: localization.supportedLocales,
-         localizationsDelegates: localization.localizationsDelegates,
-        title: 'Accounter ++',
-        initialRoute: Routes.home,
-        onGenerateRoute: RouteGenerator.generateRoute,
-        debugShowCheckedModeBanner: false,
+      child:  Consumer<LanguageAndThemeProvider>(
+
+        builder: (BuildContext context, value, Widget? child) {
+          return MaterialApp(
+            supportedLocales: localization.supportedLocales,
+            localizationsDelegates: localization.localizationsDelegates,
+            title: 'Accounter ++',
+            theme:value.isDarkTheme?ThemeData.dark():ThemeData.light() ,
+            initialRoute: Routes.home,
+            onGenerateRoute: RouteGenerator.generateRoute,
+            debugShowCheckedModeBanner: false,
+          );
+        }
       ),
     );
   }
